@@ -1,0 +1,98 @@
+import type { Word } from '@/types'
+
+/**
+ * Level 6 — 고급 2 (Proficient)
+ * ใกล้ native, นิยาย, สนทนาลึก, ภาษาทางการ
+ */
+export const level6Words: Word[] = [
+  // === สำนวน ===
+  { id: 'l6_001', korean: '눈치', romanization: 'nunchi', meaning: 'ไหวพริบ/การสังเกต', category: 'idioms', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_002', korean: '정', romanization: 'jeong', meaning: 'ความผูกพัน', category: 'idioms', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_003', korean: '한', romanization: 'han', meaning: 'ความคับแค้นใจ', category: 'idioms', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_006', korean: '눈물', romanization: 'nunmul', meaning: 'น้ำตา', category: 'idioms', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_007', korean: '미래', romanization: 'mirae', meaning: 'อนาคต', category: 'idioms', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_008', korean: '과거', romanization: 'gwageo', meaning: 'อดีต', category: 'idioms', tags: ['daily'], difficulty: 6 },
+
+  // === ภาษาทางการ ===
+  { id: 'l6_009', korean: '근거', romanization: 'geunGeo', meaning: 'หลักฐาน', category: 'formal', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_010', korean: '전제', romanization: 'jeonje', meaning: 'เงื่อนไข', category: 'formal', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_011', korean: '인과', romanization: 'ingwa', meaning: 'เหตุและผล', category: 'formal', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_012', korean: '추론', romanization: 'churon', meaning: 'การอนุมาน', category: 'formal', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_013', korean: '분석', romanization: 'bunseok', meaning: 'การวิเคราะห์', category: 'formal', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_014', korean: '평가', romanization: 'pyeongga', meaning: 'การประเมิน', category: 'formal', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_015', korean: '보완', romanization: 'bowan', meaning: 'การเสริม/แก้ไข', category: 'formal', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_016', korean: '협력', romanization: 'hyeollyeok', meaning: 'ความร่วมมือ', category: 'formal', tags: ['daily'], difficulty: 6 },
+
+  // === วรรณกรรม ===
+  { id: 'l6_017', korean: '이야기', romanization: 'iyagi', meaning: 'เรื่องราว', category: 'literary', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_018', korean: '감동', romanization: 'gamdong', meaning: 'ความประทับใจ', category: 'literary', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_019', korean: '여운', romanization: 'yeoun', meaning: 'ความรู้สึกค้าง', category: 'literary', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_020', korean: '상징', romanization: 'sangjing', meaning: 'สัญลักษณ์', category: 'literary', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_021', korean: '묘사', romanization: 'myosa', meaning: 'การบรรยาย', category: 'literary', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_022', korean: '비유', romanization: 'biyu', meaning: 'อุปมา', category: 'literary', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_023', korean: '은유', romanization: 'eunyu', meaning: 'อุปมัย', category: 'literary', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_024', korean: '풍자', romanization: 'pungja', meaning: 'การเสียดสี', category: 'literary', tags: ['daily'], difficulty: 6 },
+
+  // === การสนทนาลึก ===
+  { id: 'l6_025', korean: '철학', romanization: 'cheolhak', meaning: 'ปรัชญา', category: 'deep', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_026', korean: '존재', romanization: 'jonjae', meaning: 'การมีอยู่', category: 'deep', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_027', korean: '가치', romanization: 'gachi', meaning: 'คุณค่า', category: 'deep', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_028', korean: '의미', romanization: 'uimi', meaning: 'ความหมาย', category: 'deep', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_029', korean: '깨달음', romanization: 'kkaedareum', meaning: 'การตื่นรู้', category: 'deep', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_030', korean: '성찰', romanization: 'seongchal', meaning: 'การไตร่ตรอง', category: 'deep', tags: ['daily'], difficulty: 6 },
+
+  // === ประโยคขั้นสูง ===
+  { id: 'l6_031', korean: '깊이 생각해 볼 문제네요', romanization: 'gipi saenggakhae bol munjeneyo', meaning: 'เป็นปัญหาที่ต้องคิดลึก', category: 'sentences', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_032', korean: '그런 관점도 있을 수 있겠네요', romanization: 'geureon gwanjeomdo isseul su itgenneyo', meaning: 'มุมนั้นก็เป็นไปได้', category: 'sentences', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_033', korean: '합의점을 찾아야 할 것 같아요', romanization: 'hamuijeom-eul chajaya hal geot gatayo', meaning: 'น่าจะต้องหาจุดร่วม', category: 'sentences', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_034', korean: '좀 더 면밀히 검토해 봐야겠습니다', romanization: 'jom deo myeonmilhi geomtohae bwayagesseumnida', meaning: 'ต้องตรวจสอบให้ละเอียด', category: 'sentences', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_035', korean: '각오', romanization: 'gako', meaning: 'ความมุ่งมั่น', category: 'nouns', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_036', korean: '강단', romanization: 'gangdan', meaning: 'แท่นบรรยาย', category: 'nouns', tags: ['education'], difficulty: 6 },
+  { id: 'l6_037', korean: '겸손하다', romanization: 'gyeomsonhada', meaning: 'ถ่อมตัว', category: 'adjectives', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_038', korean: '고찰', romanization: 'gochal', meaning: 'การใคร่ครวญ', category: 'nouns', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_039', korean: '공감', romanization: 'gonggam', meaning: 'ความเห็นอกเห็นใจ', category: 'nouns', tags: ['emotions'], difficulty: 6 },
+  { id: 'l6_040', korean: '관념', romanization: 'gwannyeom', meaning: 'แนวคิด', category: 'nouns', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_041', korean: '규율', romanization: 'gyuyul', meaning: 'ระเบียบวินัย', category: 'nouns', tags: ['education'], difficulty: 6 },
+  { id: 'l6_042', korean: '긍정적', romanization: 'geungjeongjeok', meaning: 'เชิงบวก', category: 'adjectives', tags: ['emotions'], difficulty: 6 },
+  { id: 'l6_043', korean: '긴박하다', romanization: 'ginbakhada', meaning: 'เร่งด่วน', category: 'adjectives', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_044', korean: '낭만적', romanization: 'nangmanjeok', meaning: 'โรแมนติก', category: 'adjectives', tags: ['emotions'], difficulty: 6 },
+  { id: 'l6_045', korean: '노동력', romanization: 'nodongnyeok', meaning: 'แรงงาน', category: 'nouns', tags: ['society'], difficulty: 6 },
+  { id: 'l6_046', korean: '독창적', romanization: 'dokchangjeok', meaning: 'สร้างสรรค์', category: 'adjectives', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_047', korean: '면담', romanization: 'myeondam', meaning: 'การสนทนา', category: 'nouns', tags: ['business'], difficulty: 6 },
+  { id: 'l6_048', korean: '목격', romanization: 'mokgyeok', meaning: 'การเห็นด้วยตา', category: 'nouns', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_049', korean: '무역', romanization: 'muek', meaning: 'การค้า', category: 'nouns', tags: ['business'], difficulty: 6 },
+  { id: 'l6_050', korean: '배려', romanization: 'baeryeo', meaning: 'ความเอาใจใส่', category: 'nouns', tags: ['emotions'], difficulty: 6 },
+  { id: 'l6_051', korean: '변혁', romanization: 'byeonhyeok', meaning: 'การปฏิวัติ', category: 'nouns', tags: ['society'], difficulty: 6 },
+  { id: 'l6_052', korean: '사고력', romanization: 'sagoryeok', meaning: 'ความสามารถในการคิด', category: 'nouns', tags: ['education'], difficulty: 6 },
+  { id: 'l6_053', korean: '상상력', romanization: 'sangsangnyeok', meaning: 'จินตนาการ', category: 'nouns', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_054', korean: '세계화', romanization: 'segyehwa', meaning: 'โลกาภิวัตน์', category: 'nouns', tags: ['society'], difficulty: 6 },
+  { id: 'l6_055', korean: '소통', romanization: 'sotong', meaning: 'การสื่อสาร', category: 'nouns', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_056', korean: '시대', romanization: 'sidae', meaning: 'ยุคสมัย', category: 'nouns', tags: ['society'], difficulty: 6 },
+  { id: 'l6_057', korean: '양심', romanization: 'yangsim', meaning: 'มโนธรรม', category: 'nouns', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_058', korean: '역사적', romanization: 'yeoksajeok', meaning: 'ทางประวัติศาสตร์', category: 'adjectives', tags: ['society'], difficulty: 6 },
+  { id: 'l6_059', korean: '예의', romanization: 'yeui', meaning: 'มารยาท', category: 'nouns', tags: ['culture'], difficulty: 6 },
+  { id: 'l6_060', korean: '오래도록', romanization: 'oraedorok', meaning: 'เป็นเวลานาน', category: 'adverbs', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_061', korean: '외교관', romanization: 'oegyogwan', meaning: 'นักการทูต', category: 'nouns', tags: ['society'], difficulty: 6 },
+  { id: 'l6_062', korean: '원칙', romanization: 'wonchik', meaning: 'หลักการ', category: 'nouns', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_063', korean: '유연하다', romanization: 'yuryeonhada', meaning: 'ยืดหยุ่น', category: 'adjectives', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_064', korean: '이념', romanization: 'ineom', meaning: 'อุดมการณ์', category: 'nouns', tags: ['society'], difficulty: 6 },
+  { id: 'l6_065', korean: '일관성', romanization: 'ilgwanseong', meaning: 'ความสม่ำเสมอ', category: 'nouns', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_066', korean: '작품', romanization: 'jakpum', meaning: 'ผลงาน', category: 'nouns', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_067', korean: '적극적', romanization: 'jeokgeukjeok', meaning: 'กระตือรือร้น', category: 'adjectives', tags: ['emotions'], difficulty: 6 },
+  { id: 'l6_068', korean: '정통성', romanization: 'jeongtongseong', meaning: 'ความถูกต้อง', category: 'nouns', tags: ['society'], difficulty: 6 },
+  { id: 'l6_069', korean: '조화', romanization: 'johwa', meaning: 'ความกลมกลืน', category: 'nouns', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_070', korean: '지식', romanization: 'jisik', meaning: 'ความรู้', category: 'nouns', tags: ['education'], difficulty: 6 },
+  { id: 'l6_071', korean: '참여', romanization: 'chamyeo', meaning: 'การมีส่วนร่วม', category: 'nouns', tags: ['society'], difficulty: 6 },
+  { id: 'l6_072', korean: '창의력', romanization: 'chang-uiryeok', meaning: 'ความคิดสร้างสรรค์', category: 'nouns', tags: ['education'], difficulty: 6 },
+  { id: 'l6_073', korean: '철저하다', romanization: 'cheoljeohada', meaning: 'รอบคอบ', category: 'adjectives', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_074', korean: '추상적', romanization: 'chusangjeok', meaning: 'นามธรรม', category: 'adjectives', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_075', korean: '카리스마', romanization: 'kariseuma', meaning: 'เสน่ห์', category: 'nouns', tags: ['people'], difficulty: 6 },
+  { id: 'l6_076', korean: '통찰력', romanization: 'tongchallyeok', meaning: 'ความสามารถในการมองทะลุ', category: 'nouns', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_077', korean: '협동', romanization: 'hyeopdong', meaning: 'การร่วมมือ', category: 'nouns', tags: ['daily'], difficulty: 6 },
+  { id: 'l6_078', korean: '형평성', romanization: 'hyeongpyeongseong', meaning: 'ความเท่าเทียม', category: 'nouns', tags: ['society'], difficulty: 6 },
+  { id: 'l6_079', korean: '화합', romanization: 'hwahap', meaning: 'ความสามัคคี', category: 'nouns', tags: ['culture'], difficulty: 6 },
+  { id: 'l6_080', korean: '환상적', romanization: 'hwansangjeok', meaning: 'แฟนตาซี', category: 'adjectives', tags: ['literary'], difficulty: 6 },
+  { id: 'l6_081', korean: '회의', romanization: 'hoeuui', meaning: 'การประชุม', category: 'nouns', tags: ['business'], difficulty: 6 },
+  { id: 'l6_082', korean: '희망', romanization: 'huimang', meaning: 'ความหวัง', category: 'nouns', tags: ['emotions'], difficulty: 6 },
+  { id: 'l6_083', korean: '현실적', romanization: 'hyeonsiljeok', meaning: 'เป็นจริง', category: 'adjectives', tags: ['daily'], difficulty: 6 }
+]

@@ -1,0 +1,96 @@
+import type { Word } from '@/types'
+
+/**
+ * Level 4 — 중급 2 (Upper Intermediate)
+ * ไวยากรณ์ซับซ้อน สุขภาพ เทคโนโลยี สังคม
+ */
+export const level4Words: Word[] = [
+  // === สุขภาพ ===
+  { id: 'l4_001', korean: '건강', romanization: 'geongang', meaning: 'สุขภาพ', category: 'health', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_002', korean: '약', romanization: 'yak', meaning: 'ยา', category: 'health', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_003', korean: '진료', romanization: 'jinryo', meaning: 'การรักษา', category: 'health', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_004', korean: '수술', romanization: 'susul', meaning: 'การผ่าตัด', category: 'health', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_005', korean: '운동', romanization: 'undong', meaning: 'ออกกำลังกาย', category: 'health', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_006', korean: '다이어트', romanization: 'daieoteu', meaning: 'ไดเอท/ลดน้ำหนัก', category: 'health', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_007', korean: '스트레스', romanization: 'seuteureseu', meaning: 'ความเครียด', category: 'health', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_008', korean: '잠', romanization: 'jam', meaning: 'นอนหลับ', category: 'health', tags: ['daily'], difficulty: 4 },
+
+  // === เทคโนโลยี ===
+  { id: 'l4_009', korean: '컴퓨터', romanization: 'keompyuteo', meaning: 'คอมพิวเตอร์', category: 'tech', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_010', korean: '스마트폰', romanization: 'seumateupon', meaning: 'สมาร์ทโฟน', category: 'tech', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_011', korean: '인터넷', romanization: 'inteonet', meaning: 'อินเทอร์เน็ต', category: 'tech', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_012', korean: '앱', romanization: 'aep', meaning: 'แอป', category: 'tech', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_013', korean: '프로그램', romanization: 'peurogeuraem', meaning: 'โปรแกรม', category: 'tech', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_014', korean: '데이터', romanization: 'deiteo', meaning: 'ข้อมูล', category: 'tech', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_015', korean: '비밀번호', romanization: 'bimilbeonho', meaning: 'รหัสผ่าน', category: 'tech', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_016', korean: '다운로드', romanization: 'daunrodeu', meaning: 'ดาวน์โหลด', category: 'tech', tags: ['daily'], difficulty: 4 },
+
+  // === สังคม ===
+  { id: 'l4_017', korean: '정부', romanization: 'jeongbu', meaning: 'รัฐบาล', category: 'society', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_018', korean: '선거', romanization: 'seonGeo', meaning: 'การเลือกตั้ง', category: 'society', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_019', korean: '뉴스', romanization: 'nyuseu', meaning: 'ข่าว', category: 'society', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_020', korean: '경제', romanization: 'gyeongje', meaning: 'เศรษฐกิจ', category: 'society', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_021', korean: '환경', romanization: 'hwangyeong', meaning: 'สิ่งแวดล้อม', category: 'society', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_022', korean: '문화', romanization: 'munhwa', meaning: 'วัฒนธรรม', category: 'society', tags: ['daily'], difficulty: 4 },
+
+  // === การเดินทาง ===
+  { id: 'l4_023', korean: '여행', romanization: 'yeohaeng', meaning: 'การเดินทาง', category: 'travel', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_024', korean: '호텔', romanization: 'hotel', meaning: 'โรงแรม', category: 'travel', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_025', korean: '관광지', romanization: 'gwanwangji', meaning: 'สถานที่ท่องเที่ยว', category: 'travel', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_026', korean: '예약', romanization: 'yeyak', meaning: 'การจอง', category: 'travel', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_027', korean: '가이드', romanization: 'gaideu', meaning: 'ไกด์', category: 'travel', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_028', korean: '기념품', romanization: 'ginyeompum', meaning: 'ของที่ระลึก', category: 'travel', tags: ['daily'], difficulty: 4 },
+
+  // === ประโยคระดับสูง ===
+  { id: 'l4_029', korean: '이해가 안 돼요', romanization: 'ihaega an dwaeyo', meaning: 'ไม่เข้าใจ', category: 'sentences', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_030', korean: '조금 더 알려주세요', romanization: 'jogeum deo allyeojuseyo', meaning: 'กรุณาบอกเพิ่มอีก', category: 'sentences', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_031', korean: '어떻게 생각하세요?', romanization: 'eotteoke saenggakaseyo?', meaning: 'คิดอย่างไร?', category: 'sentences', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_032', korean: '의견이 있어요', romanization: 'uijeoni isseoyo', meaning: 'มีความคิดเห็น', category: 'sentences', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_033', korean: '가설', romanization: 'gaseol', meaning: 'สมมติฐาน', category: 'nouns', tags: ['education'], difficulty: 4 },
+  { id: 'l4_034', korean: '감염', romanization: 'gamyeom', meaning: 'การติดเชื้อ', category: 'nouns', tags: ['health'], difficulty: 4 },
+  { id: 'l4_035', korean: '강조하다', romanization: 'gangjohada', meaning: 'เน้นย้ำ', category: 'verbs', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_036', korean: '개발', romanization: 'gaebal', meaning: 'การพัฒนา', category: 'nouns', tags: ['work'], difficulty: 4 },
+  { id: 'l4_037', korean: '공공', romanization: 'gonggong', meaning: 'สาธารณะ', category: 'adjectives', tags: ['society'], difficulty: 4 },
+  { id: 'l4_038', korean: '과학', romanization: 'gwahak', meaning: 'วิทยาศาสตร์', category: 'nouns', tags: ['education'], difficulty: 4 },
+  { id: 'l4_039', korean: '기술', romanization: 'gisul', meaning: 'เทคโนโลยี', category: 'nouns', tags: ['technology'], difficulty: 4 },
+  { id: 'l4_040', korean: '논리', romanization: 'nolli', meaning: 'ตรรกะ', category: 'nouns', tags: ['education'], difficulty: 4 },
+  { id: 'l4_041', korean: '도시화', romanization: 'dosihwa', meaning: 'การเป็นเมือง', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_042', korean: '독립', romanization: 'dongnib', meaning: 'อิสรภาพ', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_043', korean: '론진', romanization: 'ronjin', meaning: 'การอภิปราย', category: 'nouns', tags: ['education'], difficulty: 4 },
+  { id: 'l4_044', korean: '밍크', romanization: 'mingkeu', meaning: 'มิงค์', category: 'nouns', tags: ['nature'], difficulty: 4 },
+  { id: 'l4_045', korean: '민주주의', romanization: 'minjujuui', meaning: 'ประชาธิปไตย', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_046', korean: '법률', romanization: 'beommul', meaning: 'กฎหมาย', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_047', korean: '보험', romanization: 'boheom', meaning: 'ประกัน', category: 'nouns', tags: ['shopping'], difficulty: 4 },
+  { id: 'l4_048', korean: '비만', romanization: 'biman', meaning: 'โรคอ้วน', category: 'nouns', tags: ['health'], difficulty: 4 },
+  { id: 'l4_049', korean: '생태계', romanization: 'saengtaegye', meaning: 'ระบบนิเวศ', category: 'nouns', tags: ['nature'], difficulty: 4 },
+  { id: 'l4_050', korean: '선진국', romanization: 'seonjingu', meaning: 'ประเทศพัฒนาแล้ว', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_051', korean: '소비', romanization: 'sobi', meaning: 'การใช้จ่าย', category: 'nouns', tags: ['shopping'], difficulty: 4 },
+  { id: 'l4_052', korean: '시험', romanization: 'siheom', meaning: 'การสอบ', category: 'nouns', tags: ['education'], difficulty: 4 },
+  { id: 'l4_053', korean: '식량', romanization: 'sillyang', meaning: 'อาหาร', category: 'nouns', tags: ['food'], difficulty: 4 },
+  { id: 'l4_054', korean: '인프라', romanization: 'inpeura', meaning: 'โครงสร้างพื้นฐาน', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_055', korean: '자연', romanization: 'jayeon', meaning: 'ธรรมชาติ', category: 'nouns', tags: ['nature'], difficulty: 4 },
+  { id: 'l4_056', korean: '제조', romanization: 'jejо', meaning: 'การผลิต', category: 'nouns', tags: ['work'], difficulty: 4 },
+  { id: 'l4_057', korean: '차이', romanization: 'chai', meaning: 'ความแตกต่าง', category: 'nouns', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_058', korean: '착용하다', romanization: 'chagyonghada', meaning: 'สวมใส่', category: 'verbs', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_059', korean: '철학', romanization: 'cheolhak', meaning: 'ปรัชญา', category: 'nouns', tags: ['education'], difficulty: 4 },
+  { id: 'l4_060', korean: '출신', romanization: 'chulsin', meaning: 'ภูมิหลัง', category: 'nouns', tags: ['people'], difficulty: 4 },
+  { id: 'l4_061', korean: '컨벤션', romanization: 'keonvensyeon', meaning: 'การประชุม', category: 'nouns', tags: ['work'], difficulty: 4 },
+  { id: 'l4_062', korean: '품목', romanization: 'pummok', meaning: 'รายการสินค้า', category: 'nouns', tags: ['shopping'], difficulty: 4 },
+  { id: 'l4_063', korean: '해결', romanization: 'haegyeol', meaning: 'การแก้ปัญหา', category: 'nouns', tags: ['daily'], difficulty: 4 },
+  { id: 'l4_064', korean: '환경오염', romanization: 'hwangyeongoyeom', meaning: 'มลภาวะ', category: 'nouns', tags: ['nature'], difficulty: 4 },
+  { id: 'l4_065', korean: '활용', romanization: 'hwalyong', meaning: 'การใช้ประโยชน์', category: 'nouns', tags: ['work'], difficulty: 4 },
+  { id: 'l4_066', korean: '교육법', romanization: 'gyoyukbeop', meaning: 'วิธีการสอน', category: 'nouns', tags: ['education'], difficulty: 4 },
+  { id: 'l4_067', korean: '국가', romanization: 'gukga', meaning: 'ประเทศ', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_068', korean: '근로자', romanization: 'geulloja', meaning: 'แรงงาน', category: 'nouns', tags: ['work'], difficulty: 4 },
+  { id: 'l4_069', korean: '노동', romanization: 'nodong', meaning: 'แรงงาน', category: 'nouns', tags: ['work'], difficulty: 4 },
+  { id: 'l4_070', korean: '농업', romanization: 'nongeop', meaning: 'เกษตรกรรม', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_071', korean: '도덕', romanization: 'dodok', meaning: 'จริยธรรม', category: 'nouns', tags: ['education'], difficulty: 4 },
+  { id: 'l4_072', korean: '사회', romanization: 'sahoe', meaning: 'สังคม', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_073', korean: '산업', romanization: 'saneop', meaning: 'อุตสาหกรรม', category: 'nouns', tags: ['work'], difficulty: 4 },
+  { id: 'l4_074', korean: '에너지', romanization: 'eneoji', meaning: 'พลังงาน', category: 'nouns', tags: ['nature'], difficulty: 4 },
+  { id: 'l4_075', korean: '예술', romanization: 'yesul', meaning: 'ศิลปะ', category: 'nouns', tags: ['culture'], difficulty: 4 },
+  { id: 'l4_076', korean: '의학', romanization: 'uihak', meaning: 'การแพทย์', category: 'nouns', tags: ['health'], difficulty: 4 },
+  { id: 'l4_077', korean: '자원', romanization: 'jawon', meaning: 'ทรัพยากร', category: 'nouns', tags: ['nature'], difficulty: 4 },
+  { id: 'l4_078', korean: '전쟁', romanization: 'jeonjaeng', meaning: 'สงคราม', category: 'nouns', tags: ['society'], difficulty: 4 },
+  { id: 'l4_079', korean: '정치', romanization: 'jeongchi', meaning: 'การเมือง', category: 'nouns', tags: ['society'], difficulty: 4 }
+]
