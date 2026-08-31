@@ -24,10 +24,10 @@ export default defineConfig({
       includeAssets: ['icon.svg', 'favicon.svg'],
 
       manifest: {
-        name: 'Learn Korean — Freebuff',
-        short_name: 'Korean',
+        name: 'Learn Korean — ຮຽນພາສາເກົາຫຼີ TOPIK 1-6',
+        short_name: 'ຮຽນເກົາຫຼີ',
         description:
-          'เรียนภาษาเกาหลี TOPIK 1-6 — คำศัพท์, ไวยากรณ์, Quiz, Flashcard',
+          'ຮຽນພາສາເກົາຫຼີ TOPIK 1-6 — ຄຳສັບ, ໄວຍາກອນ, Quiz, Flashcard',
 
         theme_color: '#2563eb',
         background_color: '#f8fafc',

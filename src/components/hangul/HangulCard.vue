@@ -76,7 +76,7 @@ async function speak(text: string) {
           ? 'bg-blue-500 text-white animate-pulse'
           : 'bg-blue-100 text-blue-500 hover:bg-blue-200'
       "
-      :title="isSpeaking ? 'กำลังออกเสียง...' : 'ฟังเสียง'"
+      :title="isSpeaking ? 'ກຳລັງອອກສຽງ...' : 'ຟັງສຽງ'"
       @click="handleSpeak"
     >
       <span v-if="isSpeaking" class="text-xs">🔊</span>

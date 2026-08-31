@@ -71,33 +71,51 @@ const srsBadgeLabel = computed(() => {
 
 const goodInterval = computed(() => {
   const srs = srsData.value
-  if (!srs || srs.repetitions === 0) return '1 วัน'
-  if (srs.repetitions === 1) return '3 วัน'
-  return Math.round(srs.interval * srs.easeFactor) + ' วัน'
+  if (!srs || srs.repetitions === 0) return '1 ມື້'
+  if (srs.repetitions === 1) return '3 ມື້'
+  return Math.round(srs.interval * srs.easeFactor) + ' ມື້'
 })
 
 const easyInterval = computed(() => {
   const srs = srsData.value
-  if (!srs || srs.repetitions === 0) return '2 วัน'
-  if (srs.repetitions === 1) return '5 วัน'
-  return Math.round(srs.interval * srs.easeFactor * 1.2) + ' วัน'
+  if (!srs || srs.repetitions === 0) return '2 ມື້'
+  if (srs.repetitions === 1) return '5 ມື້'
+  return Math.round(srs.interval * srs.easeFactor * 1.2) + ' ມື້'
 })
 
 const categoryLabels: Record<string, string> = {
-  greetings: '👋 ทักทาย',
-  pronouns: '🗣️ สรรพนาม',
-  numbers: '🔢 ตัวเลข',
-  family: '👨‍👩‍👧 ครอบครัว',
-  food: '🍜 อาหาร',
-  body: '🦴 ร่างกาย',
-  colors: '🎨 สี',
-  time: '📅 วันเวลา',
-  animals: '🐕 สัตว์',
-  places: '🏠 สถานที่',
-  verbs: '🏃 กริยา',
-  adjectives: '😊 คุณศัพท์',
-  conjunctions: '🔗 เชื่อม',
-  sentences: '💬 ประโยค',
+  greetings: '👋 ທັກທາຍ',
+  pronouns: '🗣️ ສັບພະນາມ',
+  numbers: '🔢 ຕົວເລກ',
+  family: '👨‍👩‍👧 ຄອບຄົວ',
+  food: '🍜 ອາຫານ',
+  body: '🦴 ຮ່າງກາຍ',
+  colors: '🎨 ສີ',
+  time: '📅 ວັນເວລາ',
+  animals: '🐕 ສັດ',
+  places: '🏠 ສະຖານທີ່',
+  verbs: '🏃 ກິລິຍາ',
+  adjectives: '😊 ຄຸນສັບ',
+  conjunctions: '🔗 ເຊື່ອມ',
+  sentences: '💬 ປະໂຫຍກ',
+  emotions: '💖 ອາລົມ',
+  work: '💼 ການເຮັດວຽກ',
+  shopping: '🛍️ ຊື້ເຄື່ອງ',
+  transport: '🚗 ການເດີນທາງ',
+  health: '🏥 ສຸຂະພາບ',
+  technology: '💻 ເຕັກໂນໂລຊີ',
+  society: '🌐 ສັງຄົມ',
+  culture: '🎭 ວັດທະນະທຳ',
+  economy: '📈 ເສດຖະກິດ',
+  business: '🏢 ທຸລະກິດ',
+  politics: '🏛️ ການເມືອງ',
+  academic: '🎓 ວິຊາການ',
+  idioms: '📜 ສຳນວນ',
+  formal: '👔 ທາງການ',
+  literary: '📚 ວັນນະຄະດີ',
+  nature: '🌿 ທຳມະຊາດ',
+  people: '👥 ບຸກຄົນ',
+  media: '📺 ສື່ມວນຊົນ',
 }
 const categoryLabel = categoryLabels[props.word.category] || props.word.category
 
@@ -117,6 +135,24 @@ const categoryClass = (() => {
     adjectives: 'bg-violet-100 text-violet-700',
     conjunctions: 'bg-slate-100 text-slate-700',
     sentences: 'bg-emerald-100 text-emerald-700',
+    emotions: 'bg-rose-100 text-rose-700',
+    work: 'bg-indigo-100 text-indigo-700',
+    shopping: 'bg-amber-100 text-amber-700',
+    transport: 'bg-sky-100 text-sky-700',
+    health: 'bg-emerald-100 text-emerald-700',
+    technology: 'bg-cyan-100 text-cyan-700',
+    society: 'bg-blue-100 text-blue-700',
+    culture: 'bg-purple-100 text-purple-700',
+    economy: 'bg-emerald-100 text-emerald-700',
+    business: 'bg-slate-100 text-slate-800',
+    politics: 'bg-red-100 text-red-700',
+    academic: 'bg-indigo-100 text-indigo-700',
+    idioms: 'bg-amber-100 text-amber-800',
+    formal: 'bg-stone-100 text-stone-700',
+    literary: 'bg-violet-100 text-violet-700',
+    nature: 'bg-teal-100 text-teal-700',
+    people: 'bg-pink-100 text-pink-700',
+    media: 'bg-sky-100 text-sky-700',
   }
   return map[props.word.category] || 'bg-slate-100 text-slate-700'
 })()
@@ -160,11 +196,12 @@ const categoryClass = (() => {
         </div>
         <div class="text-5xl sm:text-7xl font-bold text-slate-800 mb-3">{{ word.korean }}</div>
         <div class="text-lg sm:text-xl text-blue-500 font-medium mb-2">{{ word.romanization }}</div>
-        <div class="text-xs text-slate-400 mt-4">👆 แตะเพื่อพลิกการ์ด</div>
+        <div class="text-xs text-slate-400 mt-4">👆 ແຕະເພື່ອປີ້ນບັດ</div>
         <button
           class="absolute bottom-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 text-blue-500 hover:bg-blue-200 transition-all duration-200"
           :class="isSpeaking ? 'bg-blue-500 text-white' : ''"
           @click.stop="speakWord"
+          title="ຟັງສຽງ"
         >
           🔊
         </button>
@@ -190,18 +227,18 @@ const categoryClass = (() => {
             class="w-full mt-2 py-2 rounded-xl text-sm font-medium bg-indigo-100 text-indigo-600 hover:bg-indigo-200 transition-colors"
             @click.stop="speakExample"
           >
-            🐢 ฟังตัวอย่างประโยค
+            🐢 ຟັງຕົວຢ່າງປະໂຫຍກ
           </button>
         </div>
         <div v-if="word.usage" class="text-xs text-slate-500 text-center max-w-sm mb-2">
           💡 {{ word.usage }}
         </div>
-        <div class="text-xs text-slate-400 mt-1">👆 แตะเพื่อพลิกกลับ</div>
+        <div class="text-xs text-slate-400 mt-1">👆 ແຕະເພື່ອປີ້ນກັບ</div>
       </div>
     </div>
   </div>
 
-  <!-- SRS Rating -->
+  <!-- SRS Rating in Lao -->
   <div class="flex gap-3 mt-4">
     <button
       class="flex-1 py-3 px-4 rounded-2xl font-bold text-sm transition-all duration-200 border-2"
@@ -214,8 +251,8 @@ const categoryClass = (() => {
       @click.stop="$emit('rate', 0)"
     >
       <div class="text-lg mb-0.5">🔴</div>
-      <div>จำไม่ได้</div>
-      <div class="text-[10px] font-normal opacity-60 mt-0.5">1 วัน</div>
+      <div>ຈື່ບໍ່ໄດ້</div>
+      <div class="text-[10px] font-normal opacity-60 mt-0.5">1 ມື້</div>
     </button>
     <button
       class="flex-1 py-3 px-4 rounded-2xl font-bold text-sm transition-all duration-200 border-2"
@@ -228,7 +265,7 @@ const categoryClass = (() => {
       @click.stop="$emit('rate', 1)"
     >
       <div class="text-lg mb-0.5">🟡</div>
-      <div>จำได้เล็กน้อย</div>
+      <div>ຈື່ໄດ້ໜ້ອຍໜຶ່ງ</div>
       <div class="text-[10px] font-normal opacity-60 mt-0.5">{{ goodInterval }}</div>
     </button>
     <button
@@ -242,7 +279,7 @@ const categoryClass = (() => {
       @click.stop="$emit('rate', 2)"
     >
       <div class="text-lg mb-0.5">🟢</div>
-      <div>จำได้ดี</div>
+      <div>ຈື່ໄດ້ດີ</div>
       <div class="text-[10px] font-normal opacity-60 mt-0.5">{{ easyInterval }}</div>
     </button>
   </div>

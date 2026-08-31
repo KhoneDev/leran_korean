@@ -11,16 +11,16 @@
           <div class="flex items-center gap-2 mb-1">
             <span class="text-2xl font-bold text-gray-900">{{ word.korean }}</span>
             <button
-              class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-full hover:bg-gray-100"
+              class="opacity-100 sm:opacity-75 sm:group-hover:opacity-100 transition-opacity p-1.5 rounded-full hover:bg-slate-100 bg-slate-50 text-base"
               @click.stop="speakWord"
-              title="ฟังเสียง"
+              title="ຟັງສຽງ"
             >
               🔊
             </button>
           </div>
           <!-- Romanization -->
           <div class="text-sm text-blue-500 mb-1">{{ word.romanization }}</div>
-          <!-- Thai meaning -->
+          <!-- Meaning -->
           <div class="text-base text-gray-700">{{ word.meaning }}</div>
         </div>
         <!-- Expand icon -->
@@ -49,7 +49,7 @@
         <div v-if="word.grammarPattern" class="mt-3 p-3 bg-purple-50 rounded-xl">
           <div class="flex items-center gap-1 mb-1">
             <span class="text-xs font-semibold text-purple-600 uppercase tracking-wide"
-              >📐 รูปแบบ</span
+              >📐 ຮູບແບບ</span
             >
           </div>
           <div class="text-sm font-medium text-purple-800 font-mono">{{ word.grammarPattern }}</div>
@@ -58,7 +58,7 @@
         <div v-if="word.usage" class="mt-3 p-3 bg-amber-50 rounded-xl">
           <div class="flex items-center gap-1 mb-1">
             <span class="text-xs font-semibold text-amber-600 uppercase tracking-wide"
-              >💡 วิธีใช้</span
+              >💡 ວິທີໃຊ້</span
             >
           </div>
           <div class="text-sm text-amber-800 leading-relaxed">{{ word.usage }}</div>
@@ -67,7 +67,7 @@
         <div v-if="word.examples?.length" class="mt-3">
           <div class="flex items-center gap-1 mb-2">
             <span class="text-xs font-semibold text-green-600 uppercase tracking-wide"
-              >📝 ตัวอย่างประโยค</span
+              >📝 ຕົວຢ່າງປະໂຫຍກ</span
             >
           </div>
           <div class="space-y-2">
@@ -80,7 +80,7 @@
                 <button
                   class="shrink-0 mt-0.5 p-1 rounded-full hover:bg-green-100 transition-colors"
                   @click.stop="speakSentence(ex.korean)"
-                  title="ฟังเสียงประโยค"
+                  title="ຟັງສຽງປະໂຫຍກ"
                 >
                   <span class="text-sm">🐢</span>
                 </button>
@@ -98,7 +98,7 @@
             </div>
           </div>
         </div>
-        <!-- Learn button -->
+        <!-- Learn button in Lao -->
         <div class="mt-3 flex items-center gap-2">
           <button
             class="flex-1 py-2 px-4 rounded-xl text-sm font-medium transition-all"
@@ -109,13 +109,13 @@
             "
             @click.stop="$emit('toggle-learned', word.id)"
           >
-            {{ isLearned ? '✅ จำได้แล้ว' : '📖 จำคำนี้' }}
+            {{ isLearned ? '✅ ຈື່ໄດ້ແລ້ວ' : '📖 ຈື່ຄຳນີ້' }}
           </button>
           <button
             class="py-2 px-4 rounded-xl text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
             @click.stop="speakWord"
           >
-            🔊 ฟังเสียง
+            🔊 ຟັງສຽງ
           </button>
         </div>
       </div>
@@ -124,9 +124,8 @@
 </template>
 
 <script setup lang="ts">
-
 import { ref } from 'vue'
-import { speakSlow, speakNormal } from '@/utils/speech'
+import { speakSlow } from '@/utils/speech'
 import type { Word } from '@/types'
 
 const props = defineProps<{

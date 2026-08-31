@@ -122,10 +122,10 @@ const rowColors = [
       </table>
     </div>
 
-    <!-- Legend -->
+    <!-- Legend in Lao -->
     <div class="mt-3 text-xs text-slate-400 text-center">
-      💡 คลิกตัวอักษรเพื่อฟังเสียง • 
-      ตัวบน = เกาหลี ตัวล่าง = คำอ่านอังกฤษ
+      💡 ຄລິກຕົວອັກສອນເພື່ອຟັງສຽງ • 
+      ຕົວເທິງ = ເກົາຫຼີ, ຕົວລຸ່ມ = ຄຳອ່ານພາສາອັງກິດ
     </div>
   </div>
 </template>

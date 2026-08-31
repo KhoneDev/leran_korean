@@ -1,20 +1,23 @@
 <script setup lang="ts">
-
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { getWordsByLevel, getCategoriesByLevel } from '@/data/vocabulary'
 import { useUserStore } from '@/stores/useUserStore'
 import { speakSlow, stopSpeech } from '@/utils/speech'
 import FlashCard from '@/components/flashcard/FlashCard.vue'
 import type { Word, ProficiencyLevel } from '@/types'
+
 const userStore = useUserStore()
+
 // State
 const currentIndex = ref(0)
 const filterCategory = ref<string>('all')
 const isAutoSpeak = ref(true)
 const sortMode = ref<'srs' | 'shuffle' | 'order'>('srs')
+
 // Get words for current level
 const allWords = computed(() => getWordsByLevel(userStore.progress.currentLevel))
 const categories = computed(() => getCategoriesByLevel(userStore.progress.currentLevel))
+
 // Sorted words based on mode
 const sortedWords = computed(() => {
   let words = [...allWords.value]
@@ -37,14 +40,17 @@ const sortedWords = computed(() => {
   }
   return words
 })
+
 // Current word
 const currentWord = computed(() => sortedWords.value[currentIndex.value] || null)
+
 // Progress
 const progress = computed(() => {
   const total = sortedWords.value.length
   const current = currentIndex.value + 1
   return { total, current, percent: total > 0 ? Math.round((current / total) * 100) : 0 }
 })
+
 // SRS Stats for this deck
 const deckSRSStats = computed(() => {
   const words = sortedWords.value
@@ -57,6 +63,7 @@ const deckSRSStats = computed(() => {
   }
   return { mastered, learning, new: newWords, due }
 })
+
 // Navigation
 function nextCard() {
   if (currentIndex.value < sortedWords.value.length - 1) {
@@ -65,16 +72,19 @@ function nextCard() {
     currentIndex.value = 0
   }
 }
+
 function prevCard() {
   if (currentIndex.value > 0) {
     currentIndex.value--
   }
 }
+
 function handleRate(quality: 0 | 1 | 2) {
   if (!currentWord.value) return
   userStore.reviewWord(currentWord.value.id, quality)
   setTimeout(() => nextCard(), 300)
 }
+
 // Keyboard navigation
 function handleKeydown(e: KeyboardEvent) {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextCard() }
@@ -83,13 +93,16 @@ function handleKeydown(e: KeyboardEvent) {
   else if (e.key === '2') { handleRate(1) }
   else if (e.key === '3') { handleRate(2) }
 }
+
 // Touch swipe
 let touchStartX = 0
 let touchStartY = 0
+
 function handleTouchStart(e: TouchEvent) {
   const touch = e.touches[0]
   if (touch) { touchStartX = touch.clientX; touchStartY = touch.clientY }
 }
+
 function handleTouchEnd(e: TouchEvent) {
   const touch = e.changedTouches[0]
   if (!touch) return
@@ -99,12 +112,15 @@ function handleTouchEnd(e: TouchEvent) {
     if (deltaX < 0) { nextCard() } else { prevCard() }
   }
 }
+
 // Reset index when sort mode changes
 watch(sortMode, () => { currentIndex.value = 0 })
 watch(filterCategory, () => { currentIndex.value = 0 })
+
 onMounted(() => {
   document.addEventListener('keydown', handleKeydown)
 })
+
 onUnmounted(() => {
   document.removeEventListener('keydown', handleKeydown)
   stopSpeech()
@@ -119,28 +135,30 @@ onUnmounted(() => {
   >
     <!-- Header -->
     <div class="text-center mb-6">
-      <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">🃏 Flashcard</h1>
-      <p class="text-sm text-slate-500">ฝึกท่องจำคำศัพท์ — พลิกการ์ดแล้วให้คะแนน</p>
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">🃏 Flashcard ບັດຄຳສັບ</h1>
+      <p class="text-sm text-slate-500">ຝຶກທ່ອງຈຳຄຳສັບ — ປີ້ນບັດແລ້ວໃຫ້ຄະແນນ</p>
     </div>
+
     <!-- ===== SRS Stats Bar ===== -->
     <div class="grid grid-cols-4 gap-2 mb-6">
       <div class="text-center p-2 rounded-xl bg-emerald-50">
         <div class="text-lg font-bold text-emerald-600">{{ deckSRSStats.mastered }}</div>
-        <div class="text-[10px] text-slate-500">/mastered</div>
+        <div class="text-[10px] text-slate-500">ຈື່ໄດ້ດີ</div>
       </div>
       <div class="text-center p-2 rounded-xl bg-amber-50">
         <div class="text-lg font-bold text-amber-600">{{ deckSRSStats.learning }}</div>
-        <div class="text-[10px] text-slate-500">กำลังเรียน</div>
+        <div class="text-[10px] text-slate-500">ກຳລັງຮຽນ</div>
       </div>
       <div class="text-center p-2 rounded-xl bg-blue-50">
         <div class="text-lg font-bold text-blue-600">{{ deckSRSStats.new }}</div>
-        <div class="text-[10px] text-slate-500">คำใหม่</div>
+        <div class="text-[10px] text-slate-500">ຄຳໃໝ່</div>
       </div>
       <div class="text-center p-2 rounded-xl bg-red-50">
         <div class="text-lg font-bold text-red-600">{{ deckSRSStats.due }}</div>
-        <div class="text-[10px] text-slate-500">ถึงเวลาทบทวน</div>
+        <div class="text-[10px] text-slate-500">ຮອດເວລາທວນ</div>
       </div>
     </div>
+
     <!-- ===== Settings Bar ===== -->
     <div class="flex flex-wrap items-center gap-2 mb-6">
       <!-- Category filter -->
@@ -148,9 +166,10 @@ onUnmounted(() => {
         v-model="filterCategory"
         class="px-3 py-2 rounded-xl text-sm font-medium border border-slate-200 bg-white text-slate-700 focus:ring-2 focus:ring-blue-400 outline-none"
       >
-        <option value="all">ทั้งหมด ({{ allWords.length }})</option>
+        <option value="all">ທັງໝົດ ({{ allWords.length }})</option>
         <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
       </select>
+
       <!-- Sort mode -->
       <div class="flex rounded-xl border border-slate-200 overflow-hidden">
         <button
@@ -158,7 +177,7 @@ onUnmounted(() => {
           :class="
             sortMode === 'srs'
               ? 'bg-blue-500 text-white'
-              : 'bg-white text-slate-600 hover:bg-slate-50 :bg-slate-700'
+              : 'bg-white text-slate-600 hover:bg-slate-50'
           "
           @click="sortMode = 'srs'"
         >
@@ -169,42 +188,45 @@ onUnmounted(() => {
           :class="
             sortMode === 'shuffle'
               ? 'bg-blue-500 text-white'
-              : 'bg-white text-slate-600 hover:bg-slate-50 :bg-slate-700'
+              : 'bg-white text-slate-600 hover:bg-slate-50'
           "
           @click="sortMode = 'shuffle'"
         >
-          🔀 สุ่ม
+          🔀 ສຸ່ມ
         </button>
         <button
           class="px-3 py-2 text-xs font-medium transition-all border-l border-slate-200"
           :class="
             sortMode === 'order'
               ? 'bg-blue-500 text-white'
-              : 'bg-white text-slate-600 hover:bg-slate-50 :bg-slate-700'
+              : 'bg-white text-slate-600 hover:bg-slate-50'
           "
           @click="sortMode = 'order'"
         >
-          📋 ลำดับ
+          📋 ລຳດັບ
         </button>
       </div>
+
       <!-- Auto-speak toggle -->
       <button
         class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium border transition-all"
         :class="
           isAutoSpeak
-            ? 'border-blue-300 bg-blue-50 text-blue-600 '
-            : 'border-slate-200 bg-white text-slate-600 '
+            ? 'border-blue-300 bg-blue-50 text-blue-600'
+            : 'border-slate-200 bg-white text-slate-600'
         "
         @click="isAutoSpeak = !isAutoSpeak"
+        title="ເປີດ/ປິດສຽງອັດຕະໂນມັດ"
       >
         {{ isAutoSpeak ? '🔊' : '🔇' }}
       </button>
     </div>
+
     <!-- ===== Progress ===== -->
     <div class="mb-6">
       <div class="flex items-center justify-between mb-2">
         <span class="text-sm font-medium text-slate-600">
-          ข้อ {{ progress.current }} / {{ progress.total }}
+          ຂໍ້ {{ progress.current }} / {{ progress.total }}
         </span>
         <span class="text-sm font-bold text-blue-500"> {{ progress.percent }}% </span>
       </div>
@@ -215,6 +237,7 @@ onUnmounted(() => {
         />
       </div>
     </div>
+
     <!-- ===== Flashcard ===== -->
     <div v-if="currentWord" class="mb-4">
       <FlashCard
@@ -224,12 +247,14 @@ onUnmounted(() => {
         @rate="handleRate"
       />
     </div>
+
     <!-- ===== Navigation ===== -->
     <div class="flex items-center justify-center gap-3 mb-6">
       <button
-        class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 border-slate-200 bg-white text-slate-600 hover:border-blue-300 :border-blue-600 hover:text-blue-500 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+        class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-500 transition-all disabled:opacity-30 disabled:cursor-not-allowed active:scale-95"
         :disabled="currentIndex === 0"
         @click="prevCard"
+        aria-label="ຂໍ້ກ່ອນໜ້າ"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
@@ -246,45 +271,48 @@ onUnmounted(() => {
         {{ currentIndex + 1 }} / {{ sortedWords.length }}
       </div>
       <button
-        class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 border-slate-200 bg-white text-slate-600 hover:border-blue-300 :border-blue-600 hover:text-blue-500 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+        class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-500 transition-all disabled:opacity-30 disabled:cursor-not-allowed active:scale-95"
         :disabled="sortedWords.length === 0"
         @click="nextCard"
+        aria-label="ຂໍ້ຖັດໄປ"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
     </div>
+
     <!-- ===== Keyboard Shortcuts ===== -->
     <div class="bg-slate-50 rounded-2xl border border-slate-200 p-4">
       <div class="text-xs font-semibold text-slate-500 mb-2">⌨️ Keyboard Shortcuts</div>
       <div class="flex flex-wrap gap-3 text-xs text-slate-400">
-        <span
-          ><kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">←</kbd>
-          ข้อก่อน</span
-        >
-        <span
-          ><kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">→</kbd>
-          ข้อถัดไป</span
-        >
-        <span
-          ><kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">1</kbd>
-          จำไม่ได้</span
-        >
-        <span
-          ><kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">2</kbd>
-          จำได้เล็กน้อย</span
-        >
-        <span
-          ><kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">3</kbd>
-          จำได้ดี</span
-        >
+        <span>
+          <kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">←</kbd>
+          ຂໍ້ກ່ອນ
+        </span>
+        <span>
+          <kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">→</kbd>
+          ຂໍ້ຖັດໄປ
+        </span>
+        <span>
+          <kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">1</kbd>
+          ຈື່ບໍ່ໄດ້
+        </span>
+        <span>
+          <kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">2</kbd>
+          ຈື່ໄດ້ໜ້ອຍໜຶ່ງ
+        </span>
+        <span>
+          <kbd class="px-1.5 py-0.5 bg-white rounded border border-slate-200 font-mono">3</kbd>
+          ຈື່ໄດ້ດີ
+        </span>
       </div>
     </div>
+
     <!-- Empty state -->
     <div v-if="sortedWords.length === 0" class="text-center py-16">
       <div class="text-5xl mb-4">📭</div>
-      <p class="text-lg text-slate-500">ไม่มีคำศัพท์ในหมวดนี้</p>
+      <p class="text-lg text-slate-500">ບໍ່ມີຄຳສັບໃນໝວດນີ້</p>
     </div>
   </div>
 </template>

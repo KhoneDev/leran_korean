@@ -1,28 +1,32 @@
 <script setup lang="ts">
-
 import { onMounted } from 'vue'
 import { useHangulStore } from '@/stores/useHangulStore'
 import { useUserStore } from '@/stores/useUserStore'
 import { speakSlow, speakNormal } from '@/utils/speech'
+
 const hangulStore = useHangulStore()
 const userStore = useUserStore()
+
 onMounted(() => {
   if (!hangulStore.currentChar && hangulStore.allChars.length > 0) {
     const firstChar = hangulStore.allChars[0]
     if (firstChar) { hangulStore.setCurrentChar(firstChar) }
   }
 })
+
 function handleMarkDone() {
   if (hangulStore.currentChar) {
     hangulStore.toggleComplete(hangulStore.currentChar.char)
     userStore.addXP(2)
   }
 }
+
 function speakCurrent() {
   if (hangulStore.currentChar) {
     speakSlow(hangulStore.currentChar.char)
   }
 }
+
 function speakCurrentNormal() {
   if (hangulStore.currentChar) {
     speakNormal(hangulStore.currentChar.char)
@@ -47,31 +51,34 @@ function speakCurrentNormal() {
           {{ hangulStore.currentChar.romanization }}
         </div>
         <div class="text-lg text-slate-600">{{ hangulStore.currentChar.sound }}</div>
-        <!-- Pronunciation Buttons -->
+
+        <!-- Pronunciation Buttons in Lao -->
         <div class="flex items-center justify-center gap-3 mt-5">
           <button
             class="flex items-center gap-2 px-4 py-2.5 bg-blue-500 text-white rounded-xl font-semibold hover:bg-blue-600 transition-all duration-200 active:scale-95 shadow-sm"
-            title="ฟังเสียงช้า (ฝึกออกเสียง)"
+            title="ຟັງສຽງຊ້າ (ຝຶກອອກສຽງ)"
             @click="speakCurrent"
           >
-            🐢 ฟังเสียงช้า
+            🐢 ຟັງສຽງຊ້າ
           </button>
           <button
             class="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-700 rounded-xl font-semibold hover:border-blue-300 hover:text-blue-600 transition-all duration-200 active:scale-95"
-            title="ฟังเสียงปกติ"
+            title="ຟັງສຽງປົກກະຕິ"
             @click="speakCurrentNormal"
           >
-            🗣️ ฟังปกติ
+            🗣️ ຟັງປົກກະຕິ
           </button>
         </div>
       </div>
+
       <!-- Tip Toggle -->
       <button
         class="mb-4 px-4 py-2 text-sm text-slate-500 border border-dashed border-slate-300 rounded-lg hover:border-blue-400 hover:text-blue-500 transition-colors duration-200"
         @click="hangulStore.toggleTip()"
       >
-        {{ hangulStore.showTip ? 'ซ่อนเคล็ดลับ' : '💡 แสดงเคล็ดลับ' }}
+        {{ hangulStore.showTip ? 'ເຊື່ອງເຄັດລັບ' : '💡 ສະແດງເຄັດລັບ' }}
       </button>
+
       <!-- Tip Box -->
       <Transition
         enter-active-class="transition-all duration-300 ease-out"
@@ -88,13 +95,14 @@ function speakCurrentNormal() {
           {{ hangulStore.currentChar.tip }}
         </div>
       </Transition>
-      <!-- Action Buttons -->
+
+      <!-- Action Buttons in Lao -->
       <div class="flex items-center gap-3 w-full mb-6">
         <button
           class="flex-1 px-4 py-3 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:border-blue-300 hover:text-blue-600 transition-all duration-200 active:scale-95"
           @click="hangulStore.prevChar()"
         >
-          ◀ ก่อนหน้า
+          ◀ ກ່ອນໜ້າ
         </button>
         <button
           class="flex-1 px-4 py-3 font-semibold rounded-xl transition-all duration-200 active:scale-95 shadow-sm"
@@ -107,17 +115,18 @@ function speakCurrentNormal() {
         >
           {{
             hangulStore.completedChars.includes(hangulStore.currentChar.char)
-              ? '✓ จำได้แล้ว'
-              : 'จำได้ ✓'
+              ? '✓ ຈື່ໄດ້ແລ້ວ'
+              : 'ຈື່ໄດ້ ✓'
           }}
         </button>
         <button
           class="flex-1 px-4 py-3 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:border-blue-300 hover:text-blue-600 transition-all duration-200 active:scale-95"
           @click="hangulStore.nextChar()"
         >
-          ถัดไป ▶
+          ຖັດໄປ ▶
         </button>
       </div>
+
       <!-- Navigation Dots -->
       <div class="flex flex-wrap justify-center gap-1.5 max-w-xs">
         <button
@@ -135,10 +144,11 @@ function speakCurrentNormal() {
         ></button>
       </div>
     </div>
+
     <!-- Empty State -->
     <div v-else class="text-center py-16 text-slate-400">
       <div class="text-4xl mb-3">📖</div>
-      <p class="text-lg">ยังไม่มีตัวอักษรให้ฝึก</p>
+      <p class="text-lg">ຍັງບໍ່ມີຕົວອັກສອນໃຫ້ຝຶກ</p>
     </div>
   </div>
 </template>

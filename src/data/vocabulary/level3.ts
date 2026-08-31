@@ -1,107 +1,579 @@
 import type { Word } from '@/types'
 
 /**
- * Level 3 — 중급 1 (Intermediate)
- * การเปรียบเทียบ การเชื่อมประโยค สถานที่ อารมณ์
+ * Level 3 — TOPIK 3 (Intermediate Low / ລະດັບກາງຂັ້ນຕົ້ນ)
+ * ການເຮັດວຽກໃນສຳນັກງານ, ການເຊົ່າເຮືອນ, ສາຍພົວພັນສັງຄົມ, ອາລົມ, ແລະ ການສະແດງຄວາມຄິດເຫັນ
  */
 export const level3Words: Word[] = [
-  // === อารมณ์ ===
-  { id: 'l3_001', korean: '기쁘다', romanization: 'gippeuda', meaning: 'ดีใจ', category: 'emotions', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_002', korean: '슬프다', romanization: 'seulpeuda', meaning: 'เสียใจ', category: 'emotions', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_003', korean: '화나다', romanization: 'hwanada', meaning: 'โกรธ', category: 'emotions', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_004', korean: '무섭다', romanization: 'museopda', meaning: 'กลัว', category: 'emotions', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_005', korean: '외롭다', romanization: 'woeropda', meaning: 'เหงา', category: 'emotions', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_006', korean: '신나다', romanization: 'sinnada', meaning: 'ตื่นเต้น', category: 'emotions', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_007', korean: '편하다', romanization: 'pyeonhada', meaning: 'สะดวกสบาย', category: 'emotions', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_008', korean: '불편하다', romanization: 'bulpyeonhada', meaning: 'ไม่สะดวก', category: 'emotions', tags: ['daily'], difficulty: 3 },
+  // ====== ການເຮັດວຽກ & ສຳນັກງານ (Work & Office) ======
+  {
+    id: 'l3_001',
+    korean: '회사원',
+    romanization: 'hoesawon',
+    meaning: 'ພະນັກງານບໍລິສັດ',
+    category: 'work',
+    tags: ['work', 'topik3'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '저는 무역 회사에서 일하는 회사원입니다.',
+        romanization: 'Jeoneun muyeok hoesaeseo ilhaneun hoesawonimnida.',
+        meaning: 'ຂ້ອຍເປັນພະນັກງານບໍລິສັດເຮັດວຽກຢູ່ບໍລິສັດການຄ້າ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_002',
+    korean: '회의',
+    romanization: 'hoeui',
+    meaning: 'ການປະຊຸມ',
+    category: 'work',
+    tags: ['work', 'topik3'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '오후 2시에 중요한 회의가 있어요.',
+        romanization: 'Ohu dusie jungyohan hoeuiga isseoyo.',
+        meaning: 'ຕອນບ່າຍ 2 ໂມງມີການປະຊຸມສຳຄັນ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_003',
+    korean: '보고서',
+    romanization: 'bogoseo',
+    meaning: 'ບົດລາຍງານ, ເອກະສານລາຍງານ',
+    category: 'work',
+    tags: ['work', 'topik3'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '퇴근 전까지 보고서를 작성해야 해요.',
+        romanization: 'Toegeun jeonkkaji bogoseoreul jakseonghaeya haeyo.',
+        meaning: 'ກ່ອນເລີກວຽກຕ້ອງຂຽນບົດລາຍງານໃຫ້ແລ້ວ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_004',
+    korean: '면접',
+    romanization: 'myeonjeop',
+    meaning: 'ການສຳພາດ (ວຽກ/ຮຽນ)',
+    category: 'work',
+    tags: ['work', 'education'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '내일 입사 면접이 있어서 긴장돼요.',
+        romanization: 'Naeil ipsa myeonjeobi isseoseo ginjangdwaeyo.',
+        meaning: 'ມື້ອື່ນມີສຳພາດເຂົ້າເຮັດວຽກເລີຍຮູ້ສຶກຕື່ນເຕັ້ນ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_005',
+    korean: '월급',
+    romanization: 'wolgeup',
+    meaning: 'ເງິນເດືອນ',
+    category: 'work',
+    tags: ['work', 'economy'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '월급날에 부모님께 선물을 사 드렸어요.',
+        romanization: 'Wolgeubnare bumonimkke seonmureul sa deuryeosseoyo.',
+        meaning: 'ໃນມື້ເງິນເດືອນອອກ ຂ້ອຍຊື້ຂອງຂວັນໃຫ້ພໍ່ແມ່.'
+      }
+    ]
+  },
+  {
+    id: 'l3_006',
+    korean: '승진하다',
+    romanization: 'seungjinhada',
+    meaning: 'ເລື່ອນຕຳແໜ່ງ',
+    category: 'work',
+    tags: ['work'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '김 과장님이 이번에 부장으로 승진하셨어요.',
+        romanization: 'Gim gwajangnimi ibeone bujangeuro seungjinhasyeosseoyo.',
+        meaning: 'ຫົວໜ້າຄິມໄດ້ເລື່ອນຕຳແໜ່ງເປັນຜູ້ຈັດການແລ້ວ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_007',
+    korean: '출근하다',
+    romanization: 'chulgeunhada',
+    meaning: 'ເຂົ້າວຽກ, ໄປເຮັດວຽກ',
+    category: 'work',
+    tags: ['work', 'daily'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '매일 아침 8시 반까지 출근해요.',
+        romanization: 'Maeil achim yeodeolsi bankkaji chulgeunhaeyo.',
+        meaning: 'ທຸກເຊົ້າຕ້ອງໄປເຂົ້າວຽກກ່ອນ 8 ໂມງເຄິ່ງ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_008',
+    korean: '퇴근하다',
+    romanization: 'toegeunhada',
+    meaning: 'ເລີກວຽກ, ກັບຈາກບ່ອນເຮັດວຽກ',
+    category: 'work',
+    tags: ['work', 'daily'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '오늘은 일이 많아서 늦게 퇴근했어요.',
+        romanization: 'Oneureun iri manhaseo neutge toegeunhaesseoyo.',
+        meaning: 'ມື້ນີ້ວຽກຫຼາຍເລີຍເລີກວຽກຊ້າ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_009',
+    korean: '야근하다',
+    romanization: 'yageunhada',
+    meaning: 'ເຮັດວຽກລ່ວງເວລາ, ເຮັດ OT ກາງຄືນ',
+    category: 'work',
+    tags: ['work'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '프로젝트 마감 때문에 매일 야근해요.',
+        romanization: 'Peurojekteu magam ttaemune maeil yageunhaeyo.',
+        meaning: 'ຍ້ອນຕ້ອງສົ່ງໂຄງການໃຫ້ທັນເລີຍຕ້ອງເຮັດ OT ທຸກຄືນ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_010',
+    korean: '휴가',
+    romanization: 'hyuga',
+    meaning: 'ວັນພັກຜ່ອນປະຈຳປີ / ວັນລາພັກ',
+    category: 'work',
+    tags: ['work', 'travel'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '다음 주에 여름 휴가를 떠나요.',
+        romanization: 'Daeum jue yeoreum hyugareul tteonayo.',
+        meaning: 'ອາທິດໜ້າຂ້ອຍຈະໄປພັກຮ້ອນ.'
+      }
+    ]
+  },
 
-  // === สถานที่ ===
-  { id: 'l3_009', korean: '은행', romanization: 'eunhaeng', meaning: 'ธนาคาร', category: 'places', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_010', korean: '병원', romanization: 'byeongwon', meaning: 'โรงพยาบาล', category: 'places', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_011', korean: '약국', romanization: 'yakguk', meaning: 'ร้านขายยา', category: 'places', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_012', korean: '공원', romanization: 'gongwon', meaning: 'สวนสาธารณะ', category: 'places', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_013', korean: '서점', romanization: 'seojeom', meaning: 'ร้านหนังสือ', category: 'places', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_014', korean: '편의점', romanization: 'pyeonuijeom', meaning: 'ร้านสะดวกซื้อ', category: 'places', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_015', korean: '식당', romanization: 'sikdang', meaning: 'ร้านอาหาร', category: 'places', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_016', korean: '카페', romanization: 'kape', meaning: 'ร้านกาแฟ', category: 'places', tags: ['daily'], difficulty: 3 },
+  // ====== ທີ່ພັກອາໄສ & ການເຊົ່າເຮືອນ (Housing & Living) ======
+  {
+    id: 'l3_011',
+    korean: '부동산',
+    romanization: 'budongsan',
+    meaning: 'ນາຍໜ້າອະສັງຫາລິມະຊັບ, ຫ້ອງການຈັດຫາເຮືອນ',
+    category: 'places',
+    tags: ['society'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '방을 구하려고 부동산에 들렀어요.',
+        romanization: 'Bangeul guharyeogo budongsane deulleosseoyo.',
+        meaning: 'ຂ້ອຍແວ່ໄປຫ້ອງການນາຍໜ້າເພື່ອຊອກເຊົ່າຫ້ອງ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_012',
+    korean: '계약서',
+    romanization: 'gyeyakseo',
+    meaning: 'ສັນຍາ, ເອກະສານສັນຍາ',
+    category: 'work',
+    tags: ['society'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '집 계약서에 서명하기 전에 꼼꼼히 확인하세요.',
+        romanization: 'Jip gyeyakseoe seomyeonghagi jeone kkomkkomhi hwaginhaseyo.',
+        meaning: 'ກ່ອນເຊັນສັນຍາເຊົ່າເຮືອນ ກະລຸນາກວດເບິ່ງຢ່າງລະອຽດ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_013',
+    korean: '보증금',
+    romanization: 'bojeunggeum',
+    meaning: 'ເງິນມັດຈຳ (ຄ່າປະກັນຫ້ອງ)',
+    category: 'economy',
+    tags: ['shopping'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '원룸 보증금이 얼마예요?',
+        romanization: 'Wonrum bojeunggeumi eolmayeyo?',
+        meaning: 'ເງິນມັດຈຳຫ້ອງພັກ One-room ເທົ່າໃດ?'
+      }
+    ]
+  },
+  {
+    id: 'l3_014',
+    korean: '월세',
+    romanization: 'wolse',
+    meaning: 'ຄ່າເຊົ່າລາຍເດືອນ',
+    category: 'economy',
+    tags: ['shopping'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '매달 25일에 월세를 내요.',
+        romanization: 'Maedal isiboir-e wolsereul naeyo.',
+        meaning: 'ຂ້ອຍຈ່າຍຄ່າເຊົ່າຫ້ອງທຸກໆວັນທີ 25 ຂອງເດືອນ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_015',
+    korean: '이사하다',
+    romanization: 'isahada',
+    meaning: 'ຍ້າຍເຮືອນ, ຍ້າຍບ່ອນຢູ່',
+    category: 'verbs',
+    tags: ['daily'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '다음 달에 회사 근처로 이사해요.',
+        romanization: 'Daeum dare hoesa geuncheoro isahaeyo.',
+        meaning: 'ເດືອນໜ້າຂ້ອຍຈະຍ້າຍໄປຢູ່ໃກ້ບໍລິສັດ.'
+      }
+    ]
+  },
 
-  // === การทำงาน ===
-  { id: 'l3_017', korean: '회사', romanization: 'hoesa', meaning: 'บริษัท', category: 'work', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_018', korean: '회의', romanization: 'hoeui', meaning: 'การประชุม', category: 'work', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_019', korean: '보고서', romanization: 'bogoseo', meaning: 'รายงาน', category: 'work', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_020', korean: '면접', romanization: 'myeonjeop', meaning: 'สัมภาษณ์งาน', category: 'work', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_021', korean: '월급', romanization: 'wolgeup', meaning: 'เงินเดือน', category: 'work', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_022', korean: '승진', romanization: 'seungjin', meaning: 'เลื่อนตำแหน่ง', category: 'work', tags: ['daily'], difficulty: 3 },
+  // ====== ອາລົມ & ຄວາມຮູ້ສຶກຂັ້ນກາງ (Emotions & Psychology) ======
+  {
+    id: 'l3_016',
+    korean: '감동하다',
+    romanization: 'gamdonghada',
+    meaning: 'ປະທັບໃຈ, ຊາບຊຶ້ງໃຈ',
+    category: 'emotions',
+    tags: ['emotions'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '영화를 보고 너무 감동해서 눈물이 났어요.',
+        romanization: 'Yeonghwareul bogo neomu gamdonghaeseo nunmuri nasseoyo.',
+        meaning: 'ເບິ່ງໜັງແລ້ວປະທັບໃຈຫຼາຍຈົນນ້ຳຕາໄຫຼ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_017',
+    korean: '외롭다',
+    romanization: 'woeropda',
+    meaning: 'ເຫງົາ, ໂດດດ່ຽວ',
+    category: 'emotions',
+    tags: ['emotions'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '혼자 외국에 사니까 가끔 외로워요.',
+        romanization: 'Honja oeguge sanikka gakkeum oerowoyo.',
+        meaning: 'ຍ້ອນຢູ່ຕ່າງປະເທດຄົນດຽວ ບາງເທື່ອກໍຮູ້ສຶກເຫງົາ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_018',
+    korean: '답답하다',
+    romanization: 'dapdaphada',
+    meaning: 'ອຶດອັດໃຈ, ຫາຍໃຈບໍ່ສະດວກ, ຄາໃຈ',
+    category: 'emotions',
+    tags: ['emotions'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '일이 잘 안 풀려서 마음이 답답해요.',
+        romanization: 'Iri jal an pullyeoseo maeumi dapdaphaeyo.',
+        meaning: 'ຍ້ອນວຽກບໍ່ລາບລື່ນເລີຍຮູ້ສຶກອຶດອັດໃຈ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_019',
+    korean: '부럽다',
+    romanization: 'bureopda',
+    meaning: 'ອອນຊອນ, ອິດສາ (ໃນທາງທີ່ດີ)',
+    category: 'emotions',
+    tags: ['emotions'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '한국어를 잘하는 친구가 정말 부러워요.',
+        romanization: 'Hangugeoreul jalhaneun chinguga jeongmal bureowoyo.',
+        meaning: 'ຂ້ອຍອອນຊອນໝູ່ທີ່ເວົ້າພາສາເກົາຫຼີເກັ່ງຫຼາຍ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_020',
+    korean: '당황하다',
+    romanization: 'danghwanghada',
+    meaning: 'ສັບສົນ, ເຮັດຫຍັງບໍ່ຖືກ, ຕົກໃຈ',
+    category: 'emotions',
+    tags: ['emotions'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '갑자기 질문을 받아서 당황했어요.',
+        romanization: 'Gapjagi jilmuneul badaseo danghwanghaesseoyo.',
+        meaning: 'ຖືກຖາມກະທັນຫັນເລີຍຕອບບໍ່ຖືກ/ສັບສົນ.'
+      }
+    ]
+  },
 
-  // === ช้อปปิ้ง ===
-  { id: 'l3_023', korean: '쇼핑', romanization: 'soping', meaning: 'ช้อปปิ้ง', category: 'shopping', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_024', korean: '할인', romanization: 'harin', meaning: 'ส่วนลด', category: 'shopping', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_025', korean: '영수증', romanization: 'yeongsujeung', meaning: 'ใบเสร็จ', category: 'shopping', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_026', korean: '신발', romanization: 'sinbal', meaning: 'รองเท้า', category: 'shopping', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_027', korean: '옷', romanization: 'ot', meaning: 'เสื้อผ้า', category: 'shopping', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_028', korean: '가격', romanization: 'gagyeok', meaning: 'ราคา', category: 'shopping', tags: ['daily'], difficulty: 3 },
+  // ====== ລັກສະນະນິໄສ & ບຸກຄະລິກ (Personality & People) ======
+  {
+    id: 'l3_021',
+    korean: '성격',
+    romanization: 'seonggyeok',
+    meaning: 'ນິໄສ, ບຸກຄະລິກກະພາບ',
+    category: 'people',
+    tags: ['people'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '그 사람은 성격이 아주 밝고 긍정적이에요.',
+        romanization: 'Geu sarameun seonggyeogi aju balgo geungjeongjeogieyo.',
+        meaning: 'ຄົນນັ້ນນິໄສສົດໃສ ແລະ ມອງໂລກໃນແງ່ດີຫຼາຍ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_022',
+    korean: '적극적',
+    romanization: 'jeokgeukjeok',
+    meaning: 'ກະຕືລືລົ້ນ, ກ້າສະແດງອອກ',
+    category: 'people',
+    tags: ['people', 'work'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '수업 시간에 적극적으로 참여해요.',
+        romanization: 'Sueop sigan-e jeokgeukjeogeuro chamyeohaeyo.',
+        meaning: 'ເຂົ້າຮ່ວມໃນຫ້ອງຮຽນຢ່າງກະຕືລືລົ້ນ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_023',
+    korean: '소극적',
+    romanization: 'sogeukjeok',
+    meaning: 'ຂີ້ອາຍ, ມິດງຽບ, ບໍ່ຄ່ອຍສະແດງອອກ',
+    category: 'people',
+    tags: ['people'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '성격이 소극적이라서 낯을 많이 가려요.',
+        romanization: 'Seonggyeogi sogeukjeogiraseo nacheul mani garyeoyo.',
+        meaning: 'ນິໄສຂີ້ອາຍເລີຍມັກອາຍຄົນແປກໜ້າ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_024',
+    korean: '꼼꼼하다',
+    romanization: 'kkomkkomhada',
+    meaning: 'ລະອຽດຮອບຄອບ, ພິຖີພິຖັນ',
+    category: 'people',
+    tags: ['work', 'people'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '일을 꼼꼼하게 처리하는 편이에요.',
+        romanization: 'Ireul kkomkkomhage cheorihaneun pyeon-ieyo.',
+        meaning: 'ຂ້ອຍຂ້ອນຂ້າງເຮັດວຽກຢ່າງລະອຽດຮອບຄອບ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_025',
+    korean: '솔직하다',
+    romanization: 'soljikhada',
+    meaning: 'ຈິງໃຈ, ກົງໄປກົງມາ',
+    category: 'people',
+    tags: ['relationships'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '솔직하게 마음을 털어놓았어요.',
+        romanization: 'Soljikhage maeumeul teoreonoasseoyo.',
+        meaning: 'ຂ້ອຍເປີດໃຈບອກຄວາມຮູ້ສຶກຢ່າງຈິງໃຈ.'
+      }
+    ]
+  },
 
-  // === ประโยคระดับกลาง ===
-  { id: 'l3_029', korean: '얼마나 걸려요?', romanization: 'eolmana geollyeoyo?', meaning: 'ใช้เวลาเท่าไหร่?', category: 'sentences', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_030', korean: '도와주세요', romanization: 'dowajuseyo', meaning: 'ช่วยด้วยครับ/ค่ะ', category: 'sentences', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_031', korean: '좋은 아이디어네요', romanization: 'joeun aidieoneyo', meaning: 'ไอเดียดีเลย', category: 'sentences', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_032', korean: '다시 한번 말해주세요', romanization: 'dasi hanbeon malhaejuseyo', meaning: 'พูดอีกครั้งได้ไหม', category: 'sentences', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_033', korean: '감정', romanization: 'gamjeong', meaning: 'อารมณ์', category: 'emotions', tags: ['emotions'], difficulty: 3 },
-  { id: 'l3_034', korean: '결정하다', romanization: 'gyeoljeonghada', meaning: 'ตัดสินใจ', category: 'verbs', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_035', korean: '공유하다', romanization: 'gongyuhada', meaning: 'แชร์', category: 'verbs', tags: ['technology'], difficulty: 3 },
-  { id: 'l3_036', korean: '관계자', romanization: 'gwanjyeoja', meaning: 'ผู้เกี่ยวข้อง', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_037', korean: '교육', romanization: 'gyoyuk', meaning: 'การศึกษา', category: 'nouns', tags: ['education'], difficulty: 3 },
-  { id: 'l3_038', korean: '그룹', romanization: 'geurup', meaning: 'กลุ่ม', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_039', korean: '급여', romanization: 'geubyeo', meaning: 'เงินเดือน', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_040', korean: '기존', romanization: 'gijon', meaning: 'ที่มีอยู่เดิม', category: 'adjectives', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_041', korean: '남자', romanization: 'namja', meaning: 'ผู้ชาย', category: 'nouns', tags: ['people'], difficulty: 3 },
-  { id: 'l3_042', korean: '내용', romanization: 'naeyong', meaning: 'เนื้อหา', category: 'nouns', tags: ['education'], difficulty: 3 },
-  { id: 'l3_043', korean: '농담', romanization: 'nongdam', meaning: 'เรื่องตลก', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_044', korean: '능력', romanization: 'neungnyeok', meaning: 'ความสามารถ', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_045', korean: '다양하다', romanization: 'dayanghada', meaning: 'หลากหลาย', category: 'adjectives', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_046', korean: '단계', romanization: 'dangye', meaning: 'ขั้นตอน', category: 'nouns', tags: ['education'], difficulty: 3 },
-  { id: 'l3_047', korean: '대표', romanization: 'daepyo', meaning: 'ตัวแทน', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_048', korean: '도구', romanization: 'doku', meaning: 'เครื่องมือ', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_049', korean: '독서', romanization: 'dokseo', meaning: 'การอ่านหนังสือ', category: 'nouns', tags: ['education'], difficulty: 3 },
-  { id: 'l3_051', korean: '뮤지컬', romanization: 'myujikeol', meaning: 'มิวสิคัล', category: 'nouns', tags: ['entertainment'], difficulty: 3 },
-  { id: 'l3_052', korean: '반복', romanization: 'banbok', meaning: 'การซ้ำ', category: 'nouns', tags: ['education'], difficulty: 3 },
-  { id: 'l3_053', korean: '발표', romanization: 'balpyo', meaning: 'การนำเสนอ', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_054', korean: '변화', romanization: 'byeonhwa', meaning: 'การเปลี่ยนแปลง', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_055', korean: '보장', romanization: 'bojang', meaning: 'การรับประกัน', category: 'nouns', tags: ['shopping'], difficulty: 3 },
-  { id: 'l3_056', korean: '분석', romanization: 'bunseok', meaning: 'การวิเคราะห์', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_057', korean: '비교하다', romanization: 'bigyohada', meaning: 'เปรียบเทียบ', category: 'verbs', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_058', korean: '산책', romanization: 'sanchaek', meaning: 'การเดินเล่น', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_059', korean: '상황', romanization: 'sanghwang', meaning: 'สถานการณ์', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_060', korean: '설명하다', romanization: 'seolmyeonghada', meaning: 'อธิบาย', category: 'verbs', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_061', korean: '선택', romanization: 'seontaek', meaning: 'ทางเลือก', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_062', korean: '솔직하다', romanization: 'soljikhada', meaning: 'ซื่อสัตย์', category: 'adjectives', tags: ['people'], difficulty: 3 },
-  { id: 'l3_063', korean: '수준', romanization: 'sujun', meaning: 'ระดับ', category: 'nouns', tags: ['education'], difficulty: 3 },
-  { id: 'l3_064', korean: '스마트폰', romanization: 'seumateupon', meaning: 'สมาร์ทโฟน', category: 'nouns', tags: ['technology'], difficulty: 3 },
-  { id: 'l3_065', korean: '시도', romanization: 'sido', meaning: 'การ尝试', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_066', korean: '연구', romanization: 'yeongu', meaning: 'การวิจัย', category: 'nouns', tags: ['education'], difficulty: 3 },
-  { id: 'l3_067', korean: '여성', romanization: 'yeoseong', meaning: 'ผู้หญิง', category: 'nouns', tags: ['people'], difficulty: 3 },
-  { id: 'l3_068', korean: '예방하다', romanization: 'yebanghada', meaning: 'ป้องกัน', category: 'verbs', tags: ['health'], difficulty: 3 },
-  { id: 'l3_069', korean: '오해', romanization: 'ohae', meaning: 'ความเข้าใจผิด', category: 'nouns', tags: ['emotions'], difficulty: 3 },
-  { id: 'l3_070', korean: '이벤트', romanization: 'ibenteu', meaning: 'อีเวนต์', category: 'nouns', tags: ['entertainment'], difficulty: 3 },
-  { id: 'l3_071', korean: '이해하다', romanization: 'ihaehada', meaning: 'เข้าใจ', category: 'verbs', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_072', korean: '인건비', romanization: 'ingeonbi', meaning: 'ค่าแรง', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_073', korean: '인기', romanization: 'ingi', meaning: 'ความนิยม', category: 'nouns', tags: ['entertainment'], difficulty: 3 },
-  { id: 'l3_074', korean: '일상', romanization: 'ilsang', meaning: 'ชีวิตประจำวัน', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_075', korean: '작업', romanization: 'jageop', meaning: 'งาน', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_076', korean: '적합하다', romanization: 'jeokhaphada', meaning: 'เหมาะสม', category: 'adjectives', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_077', korean: '제안', romanization: 'jean', meaning: 'ข้อเสนอ', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_078', korean: '조직', romanization: 'jojik', meaning: 'องค์กร', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_080', korean: '졸업', romanization: 'joreop', meaning: 'การจบการศึกษา', category: 'nouns', tags: ['education'], difficulty: 3 },
-  { id: 'l3_081', korean: '종류', romanization: 'jongnyu', meaning: 'ชนิด', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_082', korean: '중요하다', romanization: 'jungyohada', meaning: 'สำคัญ', category: 'adjectives', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_083', korean: '증가', romanization: 'jeungga', meaning: 'การเพิ่มขึ้น', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_084', korean: '지속적', romanization: 'jisokjeok', meaning: 'ต่อเนื่อง', category: 'adjectives', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_085', korean: '직업', romanization: 'jieop', meaning: 'อาชีพ', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_086', korean: '챌린지', romanization: 'chaellinji', meaning: 'ท้าทาย', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_087', korean: '카테고리', romanization: 'kategori', meaning: 'หมวดหมู่', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_088', korean: '컨셉', romanization: 'kensep', meaning: 'คอนเซปต์', category: 'nouns', tags: ['daily'], difficulty: 3 },
-  { id: 'l3_089', korean: '코칭', romanization: 'koching', meaning: 'การโค้ช', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_090', korean: '품질', romanization: 'pumjil', meaning: 'คุณภาพ', category: 'nouns', tags: ['shopping'], difficulty: 3 },
-  { id: 'l3_091', korean: '협력', romanization: 'hyeomnyeok', meaning: 'การร่วมมือ', category: 'nouns', tags: ['work'], difficulty: 3 },
-  { id: 'l3_092', korean: '효과', romanization: 'hyogwa', meaning: 'ผลลัพธ์', category: 'nouns', tags: ['daily'], difficulty: 3 }
+  // ====== ສຸຂະພາບ & ອາການເຈັບປ່ວຍ (Health & Medical) ======
+  {
+    id: 'l3_026',
+    korean: '진료를 받다',
+    romanization: 'jinryoreul batda',
+    meaning: 'ກວດພະຍາດ, ຮັບການກວດຈາກທ່ານໝໍ',
+    category: 'health',
+    tags: ['health'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '의사 선생님께 진료를 받았어요.',
+        romanization: 'Uisa seonsaengnimkke jinryoreul badasseoyo.',
+        meaning: 'ຂ້ອຍໄດ້ຮັບການກວດພະຍາດຈາກທ່ານໝໍແລ້ວ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_027',
+    korean: '처방전',
+    romanization: 'cheobangjeon',
+    meaning: 'ໃບສັ່ງຢາ',
+    category: 'health',
+    tags: ['health'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '병원에서 처방전을 받아 약국에 갔어요.',
+        romanization: 'Byeongwoneseo cheobangjeoneul bada yakguge gasseoyo.',
+        meaning: 'ໄດ້ໃບສັ່ງຢາຈາກໂຮງໝໍແລ້ວໄປຮ້ານຂາຍຢາ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_028',
+    korean: '증상',
+    romanization: 'jeungsang',
+    meaning: 'ອາການ (ຂອງພະຍາດ)',
+    category: 'health',
+    tags: ['health'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '어떤 증상이 있으신가요?',
+        romanization: 'Eotteon jeungsangi isseusingayo?',
+        meaning: 'ທ່ານມີອາການແນວໃດແດ່?'
+      }
+    ]
+  },
+  {
+    id: 'l3_029',
+    korean: '소화가 안 되다',
+    romanization: 'sohwaga an doeda',
+    meaning: 'ອາຫານບໍ່ຍ່ອຍ, ແໜ້ນທ້ອງ',
+    category: 'health',
+    tags: ['health'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '과식해서 소화가 잘 안 돼요.',
+        romanization: 'Gwasikhaeseo sohwaga jal an dwaeyo.',
+        meaning: 'ກິນຫຼາຍເກີນໄປເລີຍອາຫານບໍ່ຍ່ອຍ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_030',
+    korean: '체온',
+    romanization: 'cheon',
+    meaning: 'ອຸນຫະພູມຮ່າງກາຍ',
+    category: 'health',
+    tags: ['health'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '열이 나서 체온을 쟀어요.',
+        romanization: 'Yeori naseo cheoneul jaesseoyo.',
+        meaning: 'ເປັນໄຂ້ເລີຍວັດແທກອຸນຫະພູມຮ່າງກາຍ.'
+      }
+    ]
+  },
+
+  // ====== ປະໂຫຍກ & ການສະແດງຄວາມຄິດເຫັນ (Sentences & Opinions) ======
+  {
+    id: 'l3_031',
+    korean: '제 생각에는',
+    romanization: 'je saenggagenneun',
+    meaning: 'ຕາມຄວາມຄິດຂອງຂ້ອຍແລ້ວ...',
+    category: 'sentences',
+    tags: ['formal', 'topik3'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '제 생각에는 이 방법이 더 효과적일 것 같아요.',
+        romanization: 'Je saenggagenneun i bangbeobi deo hyogwajeogil geot gatayo.',
+        meaning: 'ຕາມຄວາມຄິດຂອງຂ້ອຍ ວິທີນີ້ນ່າຈະມີປະສິດທິພາບກວ່າ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_032',
+    korean: '의견을 말씀해 주세요',
+    romanization: 'uigyeoneul malsseumhae juseyo',
+    meaning: 'ກະລຸນາບອກຄວາມຄິດເຫັນແດ່',
+    category: 'sentences',
+    tags: ['work', 'polite'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '이 안건에 대해 자유롭게 의견을 말씀해 주세요.',
+        romanization: 'I angeone daehae jayuropge uigyeoneul malsseumhae juseyo.',
+        meaning: 'ກະລຸນາບອກຄວາມຄິດເຫັນກ່ຽວກັບວາລະນີ້ຢ່າງອິດສະຫຼະ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_033',
+    korean: '동의합니다',
+    romanization: 'donguihamnida',
+    meaning: 'ເຫັນດີນຳ / ເຫັນພ້ອມ',
+    category: 'sentences',
+    tags: ['formal', 'work'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '저도 그 의견에 전적으로 동의합니다.',
+        romanization: 'Jeodo geu uigyeone jeonjeogeuro donguihamnida.',
+        meaning: 'ຂ້ອຍກໍເຫັນດີນຳຄວາມຄິດເຫັນນັ້ນຢ່າງເຕັມທີ່.'
+      }
+    ]
+  },
+  {
+    id: 'l3_034',
+    korean: '문제가 생겼어요',
+    romanization: 'munjega saenggyeosseoyo',
+    meaning: 'ເກີດບັນຫາຂຶ້ນແລ້ວ',
+    category: 'sentences',
+    tags: ['work', 'daily'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '컴퓨터에 갑자기 문제가 생겼어요.',
+        romanization: 'Keompyuteoe gapjagi munjega saenggyeosseoyo.',
+        meaning: 'ຄອມພິວເຕີເກີດບັນຫາກະທັນຫັນ.'
+      }
+    ]
+  },
+  {
+    id: 'l3_035',
+    korean: '해결 방법을 찾다',
+    romanization: 'haegyeol bangbeobeul chatda',
+    meaning: 'ຊອກຫາວິທີແກ້ໄຂບັນຫາ',
+    category: 'verbs',
+    tags: ['work', 'topik3'],
+    difficulty: 3,
+    examples: [
+      {
+        korean: '다 함께 문제의 해결 방법을 찾아봅시다.',
+        romanization: 'Da hamkke munjeui haegyeol bangbeobeul chajabopsida.',
+        meaning: 'ພວກເຮົາທຸກຄົນມາຊ່ວຍກັນຊອກຫາວິທີແກ້ໄຂບັນຫານຳກັນ.'
+      }
+    ]
+  }
 ]

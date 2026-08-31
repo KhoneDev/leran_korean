@@ -1,25 +1,34 @@
 <script setup lang="ts">
-
 import { ref } from 'vue'
 import type { GrammarPoint } from '@/data/grammar'
 import { speakNormal } from '@/utils/speech'
+
 const props = defineProps<{
   grammar: GrammarPoint
 }>()
+
 const showExamples = ref(true)
 const showPractice = ref(false)
 const currentAnswer = ref('')
 const showResult = ref(false)
 const isCorrect = ref(false)
+
 function checkAnswer(correctAnswer: string) {
   currentAnswer.value = currentAnswer.value.trim()
   isCorrect.value = currentAnswer.value === correctAnswer
   showResult.value = true
 }
+
+function selectOption(opt: string, answer: string) {
+  currentAnswer.value = opt
+  checkAnswer(answer)
+}
+
 function resetPractice() {
   currentAnswer.value = ''
   showResult.value = false
 }
+
 function speak(text: string) {
   speakNormal(text)
 }
@@ -41,26 +50,29 @@ function speak(text: string) {
         </span>
       </div>
       <div class="mt-2 px-3 py-2 bg-white rounded-lg border border-blue-100">
-        <div class="text-xs text-slate-400 mb-0.5">โครงสร้าง</div>
+        <div class="text-xs text-slate-400 mb-0.5">ໂຄງສ້າງ</div>
         <div class="text-sm font-mono font-semibold text-slate-700">{{ grammar.structure }}</div>
       </div>
     </div>
-    <!-- Content -->
+
+    <!-- Content in Lao -->
     <div class="px-5 py-4">
       <!-- Meaning -->
       <div class="mb-4">
-        <div class="text-sm font-semibold text-slate-600 mb-1">💡 ความหมาย</div>
+        <div class="text-sm font-semibold text-slate-600 mb-1">💡 ຄວາມໝາຍ</div>
         <div class="text-sm text-slate-700">{{ grammar.meaning }}</div>
       </div>
+
       <!-- Explanation -->
       <div class="mb-4">
-        <div class="text-sm font-semibold text-slate-600 mb-1">📖 อธิบาย</div>
+        <div class="text-sm font-semibold text-slate-600 mb-1">📖 ອະທິບາຍ</div>
         <div
           class="text-sm text-slate-700 whitespace-pre-line leading-relaxed bg-slate-50 p-3 rounded-lg"
         >
           {{ grammar.explanation }}
         </div>
       </div>
+
       <!-- Examples -->
       <div class="mb-4">
         <button
@@ -68,7 +80,7 @@ function speak(text: string) {
           @click="showExamples = !showExamples"
         >
           <span>{{ showExamples ? '▾' : '▸' }}</span>
-          <span>ตัวอย่าง ({{ grammar.examples.length }})</span>
+          <span>ຕົວຢ່າງ ({{ grammar.examples.length }})</span>
         </button>
         <Transition
           enter-active-class="transition-all duration-200"
@@ -88,8 +100,9 @@ function speak(text: string) {
                 <div class="flex items-center gap-2">
                   <span class="text-base font-semibold text-slate-800">{{ ex.kr }}</span>
                   <button
-                    class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 text-blue-500 hover:bg-blue-200 transition-colors text-xs opacity-0 group-hover:opacity-100"
+                    class="w-7 h-7 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors text-xs opacity-100 sm:opacity-75 sm:group-hover:opacity-100 shrink-0"
                     @click="speak(ex.kr)"
+                    title="ຟັງສຽງຕົວຢ່າງ"
                   >
                     🔊
                   </button>
@@ -101,9 +114,10 @@ function speak(text: string) {
           </div>
         </Transition>
       </div>
+
       <!-- Tips -->
       <div v-if="grammar.tips.length > 0" class="mb-4">
-        <div class="text-sm font-semibold text-slate-600 mb-2">⭐ เคล็ดลับ</div>
+        <div class="text-sm font-semibold text-slate-600 mb-2">⭐ ເຄັດລັບ</div>
         <div class="space-y-1.5">
           <div
             v-for="(tip, idx) in grammar.tips"
@@ -114,6 +128,7 @@ function speak(text: string) {
           </div>
         </div>
       </div>
+
       <!-- Practice -->
       <div>
         <button
@@ -121,7 +136,7 @@ function speak(text: string) {
           @click="showPractice = !showPractice"
         >
           <span>{{ showPractice ? '▾' : '▸' }}</span>
-          <span>แบบฝึกหัด ({{ grammar.practice.length }})</span>
+          <span>ແບບຝຶກຫັດ ({{ grammar.practice.length }})</span>
         </button>
         <Transition
           enter-active-class="transition-all duration-200"
@@ -146,7 +161,7 @@ function speak(text: string) {
                   v-model="currentAnswer"
                   type="text"
                   class="flex-1 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-                  :placeholder="p.hint || 'พิมพ์คำตอบ...'"
+                  :placeholder="p.hint || 'ພິມຄຳຕອບ...'"
                   :disabled="showResult"
                   @keyup.enter="checkAnswer(p.answer)"
                 />
@@ -155,7 +170,7 @@ function speak(text: string) {
                   class="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-lg hover:bg-blue-600 transition-colors"
                   @click="checkAnswer(p.answer)"
                 >
-                  ตรวจ
+                  ກວດ
                 </button>
               </div>
               <!-- Multiple choice -->
@@ -174,12 +189,12 @@ function speak(text: string) {
                           : 'bg-white border-slate-200 hover:border-blue-300'
                   "
                   :disabled="showResult"
-                  @click="currentAnswer = opt; checkAnswer(p.answer)"
+                  @click="selectOption(opt, p.answer)"
                 >
                   {{ opt }}
                 </button>
               </div>
-              <!-- Result -->
+              <!-- Result in Lao -->
               <Transition
                 enter-active-class="transition-all duration-200"
                 enter-from-class="opacity-0"
@@ -191,7 +206,7 @@ function speak(text: string) {
                     :class="isCorrect ? 'text-emerald-600' : 'text-red-500'"
                   >
                     <span>{{ isCorrect ? '✅' : '❌' }}</span>
-                    <span>{{ isCorrect ? 'ถูกต้อง!' : `คำตอบ: ${p.answer}` }}</span>
+                    <span>{{ isCorrect ? 'ຖືກຕ້ອງ!' : `ຄຳຕອບ: ${p.answer}` }}</span>
                   </div>
                   <div class="text-xs text-slate-500 mt-1">💡 {{ p.explanation }}</div>
                 </div>
@@ -202,7 +217,7 @@ function speak(text: string) {
               class="w-full py-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
               @click="resetPractice()"
             >
-              🔄 ลองใหม่
+              🔄 ລອງໃໝ່
             </button>
           </div>
         </Transition>

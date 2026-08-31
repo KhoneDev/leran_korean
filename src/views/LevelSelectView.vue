@@ -4,10 +4,13 @@ import { useUserStore } from '@/stores/useUserStore'
 import { allLevels, getLevelProgress } from '@/data/levels'
 import type { ProficiencyLevel } from '@/types'
 import LevelBadge from '@/components/LevelBadge.vue'
+
 const userStore = useUserStore()
+
 function selectLevel(level: ProficiencyLevel) {
   userStore.setCurrentLevel(level)
 }
+
 function getProgress(level: ProficiencyLevel) {
   return getLevelProgress(
     level,
@@ -16,16 +19,18 @@ function getProgress(level: ProficiencyLevel) {
     userStore.progress.lessonsCompleted,
   )
 }
+
 const currentConfig = computed(() => userStore.getLevelInfo(userStore.progress.currentLevel))
 </script>
 
 <template>
   <div class="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-    <!-- Header -->
+    <!-- Header in Lao -->
     <div class="text-center mb-8">
-      <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">📚 เลือกระดับการเรียน</h1>
-      <p class="text-sm sm:text-base text-slate-500">ระดับ TOPIK 1-6 — เลือกระดับที่เหมาะกับคุณ</p>
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">📚 ເລືອກລະດັບການຮຽນ</h1>
+      <p class="text-sm sm:text-base text-slate-500">ລະດັບ TOPIK 1-6 — ເລືອກລະດັບທີ່ເໝາະສົມກັບທ່ານ</p>
     </div>
+
     <!-- Current Level Card -->
     <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 mb-8 shadow-sm">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -33,7 +38,7 @@ const currentConfig = computed(() => userStore.getLevelInfo(userStore.progress.c
           <div class="text-4xl sm:text-5xl">{{ currentConfig.icon }}</div>
           <div>
             <div class="text-xs text-slate-400 uppercase tracking-wide font-medium mb-0.5">
-              ระดับปัจจุบัน
+              ລະດັບປະຈຸບັນ
             </div>
             <div class="text-lg sm:text-xl font-bold text-slate-800 mb-1">
               Level {{ userStore.progress.currentLevel }} — {{ currentConfig.nameKr }}
@@ -57,18 +62,19 @@ const currentConfig = computed(() => userStore.getLevelInfo(userStore.progress.c
             <div class="text-xl sm:text-2xl font-bold text-emerald-500">
               {{ userStore.progress.wordsLearned }}
             </div>
-            <div class="text-xs text-slate-400">คำศัพท์</div>
+            <div class="text-xs text-slate-400">ຄຳສັບ</div>
           </div>
           <div class="text-center">
             <div class="text-xl sm:text-2xl font-bold text-purple-500">
               {{ userStore.progress.lessonsCompleted }}
             </div>
-            <div class="text-xs text-slate-400">บทเรียน</div>
+            <div class="text-xs text-slate-400">ບົດຮຽນ</div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Level Cards -->
+
+    <!-- Level Cards in Lao -->
     <div class="space-y-4">
       <div
         v-for="lvl in allLevels"
@@ -105,18 +111,19 @@ const currentConfig = computed(() => userStore.getLevelInfo(userStore.progress.c
                 class="px-2 py-0.5 text-[10px] font-bold text-white rounded-full"
                 :style="{ backgroundColor: lvl.color }"
               >
-                ปัจจุบัน
+                ປະຈຸບັນ
               </span>
             </div>
             <div class="text-base sm:text-lg font-bold text-slate-800">
               {{ lvl.nameKr }} — {{ lvl.name }}
             </div>
           </div>
-
         </div>
+
         <!-- Description -->
         <p class="text-sm text-slate-500 mb-4 leading-relaxed">{{ lvl.description }}</p>
-        <!-- Progress -->
+
+        <!-- Progress in Lao -->
         <div class="grid grid-cols-3 gap-3 mb-4">
           <div>
             <div class="flex items-center justify-between mb-1">
@@ -134,7 +141,7 @@ const currentConfig = computed(() => userStore.getLevelInfo(userStore.progress.c
           </div>
           <div>
             <div class="flex items-center justify-between mb-1">
-              <span class="text-xs text-slate-500">📝 คำ</span>
+              <span class="text-xs text-slate-500">📝 ຄຳ</span>
               <span class="text-xs font-semibold" :style="{ color: lvl.color }"
                 >{{ getProgress(lvl.level).words }}%</span
               >
@@ -148,7 +155,7 @@ const currentConfig = computed(() => userStore.getLevelInfo(userStore.progress.c
           </div>
           <div>
             <div class="flex items-center justify-between mb-1">
-              <span class="text-xs text-slate-500">📚 บท</span>
+              <span class="text-xs text-slate-500">📚 ບົດ</span>
               <span class="text-xs font-semibold" :style="{ color: lvl.color }"
                 >{{ getProgress(lvl.level).lessons }}%</span
               >
@@ -161,9 +168,10 @@ const currentConfig = computed(() => userStore.getLevelInfo(userStore.progress.c
             </div>
           </div>
         </div>
+
         <!-- Skills -->
         <div class="mb-3">
-          <div class="text-xs font-semibold text-slate-600 mb-2">ทักษะที่จะได้:</div>
+          <div class="text-xs font-semibold text-slate-600 mb-2">ທັກສະທີ່ຈະໄດ້ຮັບ:</div>
           <div class="flex flex-wrap gap-1.5">
             <span
               v-for="(skill, idx) in lvl.skills"
@@ -174,9 +182,10 @@ const currentConfig = computed(() => userStore.getLevelInfo(userStore.progress.c
             </span>
           </div>
         </div>
+
         <!-- Grammar Tags -->
         <div>
-          <div class="text-xs font-semibold text-slate-600 mb-2">ไวยากรณ์:</div>
+          <div class="text-xs font-semibold text-slate-600 mb-2">ໄວຍາກອນ:</div>
           <div class="flex flex-wrap gap-1.5">
             <span
               v-for="(topic, idx) in lvl.grammarTopics"

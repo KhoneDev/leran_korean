@@ -1,10 +1,10 @@
 <template>
   <div class="max-w-2xl mx-auto">
-    <!-- ===== Setup Screen ===== -->
+    <!-- ===== Setup Screen in Lao ===== -->
     <div v-if="state === 'setup'" class="space-y-6">
       <!-- Quiz Type Selection -->
       <div>
-        <h3 class="text-lg font-bold text-slate-800 mb-3">🎯 เลือกโหมด Quiz</h3>
+        <h3 class="text-lg font-bold text-slate-800 mb-3">🎯 ເລືອກໂໝດ Quiz</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button
             v-for="qt in quizTypes"
@@ -20,15 +20,16 @@
             <div class="text-2xl mb-2">{{ qt.icon }}</div>
             <div class="font-bold text-slate-800 text-sm">{{ qt.label }}</div>
             <div class="text-xs text-slate-500 mt-1">{{ qt.description }}</div>
-            <div class="text-xs text-blue-500 mt-2 font-medium">{{ qt.count }} ข้อ</div>
+            <div class="text-xs text-blue-500 mt-2 font-medium">{{ qt.count }} ຂໍ້</div>
           </button>
         </div>
       </div>
+
       <!-- Question Count -->
       <div class="bg-white rounded-2xl border border-slate-200 p-4">
         <div class="flex items-center justify-between mb-3">
-          <span class="text-sm font-medium text-slate-700">จำนวนข้อ</span>
-          <span class="text-lg font-bold text-blue-600">{{ questionCount }} ข้อ</span>
+          <span class="text-sm font-medium text-slate-700">ຈຳນວນຂໍ້</span>
+          <span class="text-lg font-bold text-blue-600">{{ questionCount }} ຂໍ້</span>
         </div>
         <input
           v-model.number="questionCount"
@@ -39,27 +40,29 @@
           class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
         />
         <div class="flex justify-between text-xs text-slate-400 mt-1">
-          <span>5 ข้อ</span> <span>{{ maxQuestions }} ข้อ</span>
+          <span>5 ຂໍ້</span> <span>{{ maxQuestions }} ຂໍ້</span>
         </div>
       </div>
+
       <!-- Start Button -->
       <button
         class="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-lg shadow-lg shadow-blue-200 hover:shadow-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 active:scale-[0.98]"
         @click="startQuiz"
       >
-        🚀 เริ่ม Quiz!
+        🚀 ເລີ່ມ Quiz!
       </button>
     </div>
-    <!-- ===== Quiz Screen ===== -->
+
+    <!-- ===== Quiz Screen in Lao ===== -->
     <div v-if="state === 'quiz'">
       <!-- Progress Bar -->
       <div class="mb-6">
         <div class="flex items-center justify-between mb-2">
           <span class="text-sm font-medium text-slate-600">
-            ข้อ {{ currentIndex + 1 }} / {{ questions.length }}
+            ຂໍ້ {{ currentIndex + 1 }} / {{ questions.length }}
           </span>
           <span class="text-sm font-bold text-blue-600">
-            {{ correctCount }}/{{ currentIndex }} ถูก
+            {{ correctCount }}/{{ currentIndex }} ຖືກ
           </span>
         </div>
         <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
@@ -69,6 +72,7 @@
           />
         </div>
       </div>
+
       <!-- Question Card -->
       <div
         v-if="currentQuestion"
@@ -83,6 +87,7 @@
             {{ typeBadgeLabel }}
           </span>
         </div>
+
         <!-- Question Content -->
         <div class="px-5 py-4">
           <!--(sentence-to-meaning)-->
@@ -104,15 +109,17 @@
               </button>
             </div>
             <div class="text-sm text-slate-400 italic mb-2">{{ currentQuestion.romanization }}</div>
-            <p class="text-base text-slate-600">ประโยคนี้หมายถึงอะไร?</p>
+            <p class="text-base text-slate-600">ປະໂຫຍກນີ້ໝາຍເຖິງຫຍັງ?</p>
           </div>
+
           <!--(meaning-to-sentence)-->
           <div v-else-if="currentQuestion.type === 'meaning-to-sentence'" class="text-center">
             <div class="text-2xl sm:text-3xl font-bold text-slate-800 mb-3">
               {{ currentQuestion.thaiMeaning }}
             </div>
-            <p class="text-base text-slate-600">ประโยคเกาหลีที่ถูกต้องคือข้อไหน?</p>
+            <p class="text-base text-slate-600">ປະໂຫຍກເກົາຫຼີທີ່ຖືກຕ້ອງແມ່ນຂໍ້ໃດ?</p>
           </div>
+
           <!--(fill-blank)-->
           <div v-else-if="currentQuestion.type === 'fill-blank'" class="text-center">
             <div class="flex items-center justify-center gap-3 mb-3">
@@ -132,8 +139,9 @@
               </button>
             </div>
             <div class="text-sm text-slate-400 italic mb-2">{{ currentQuestion.romanization }}</div>
-            <p class="text-base text-slate-600">เติมคำในช่องว่างให้ถูกต้อง</p>
+            <p class="text-base text-slate-600">ຕື່ມຄຳໃນຊ່ອງວ່າງໃຫ້ຖືກຕ້ອງ</p>
           </div>
+
           <!--(word-in-context)-->
           <div v-else-if="currentQuestion.type === 'word-in-context'" class="text-center">
             <div class="flex items-center justify-center gap-3 mb-3">
@@ -155,11 +163,12 @@
             <div class="text-sm text-slate-400 italic mb-2">{{ currentQuestion.romanization }}</div>
             <p class="text-base text-slate-600">
               " <span class="font-bold text-blue-600">{{ currentQuestion.highlightWord }}</span
-              >" ในประโยคนี้หมายถึงอะไร?
+              > " ໃນປະໂຫຍກນີ້ໝາຍເຖິງຫຍັງ?
             </p>
           </div>
         </div>
-        <!-- Answer Options -->
+
+        <!-- Answer Options in Lao -->
         <div class="px-5 pb-5 space-y-2.5">
           <button
             v-for="(option, i) in currentQuestion.options"
@@ -174,7 +183,7 @@
                 class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-sm font-bold"
                 :class="getLetterClass(option)"
               >
-                {{ ['ก', 'ข', 'ค', 'ง'][i] }}
+                {{ ['ກ', 'ຂ', 'ຄ', 'ງ'][i] }}
               </span>
               <span
                 class="flex-1 text-sm sm:text-base"
@@ -197,7 +206,8 @@
             </div>
           </button>
         </div>
-        <!-- Explanation (after answer) -->
+
+        <!-- Explanation (after answer) in Lao -->
         <Transition name="fade">
           <div v-if="answered" class="px-5 pb-5">
             <div
@@ -207,7 +217,7 @@
               <div class="flex items-center gap-2 mb-1">
                 <span class="text-lg">{{ isCorrect ? '🎉' : '💡' }}</span>
                 <span class="font-bold" :class="isCorrect ? 'text-green-700' : 'text-red-700'">
-                  {{ isCorrect ? 'ถูกต้อง!' : 'ไม่ถูกนะ' }}
+                  {{ isCorrect ? 'ຖືກຕ້ອງ!' : 'ຍັງບໍ່ຖືກຕ້ອງ' }}
                 </span>
               </div>
               <p class="text-sm" :class="isCorrect ? 'text-green-600' : 'text-red-600'">
@@ -216,6 +226,7 @@
             </div>
           </div>
         </Transition>
+
         <!-- Next Button -->
         <div v-if="answered" class="px-5 pb-5">
           <button
@@ -227,29 +238,30 @@
             "
             @click="nextQuestion"
           >
-            {{ currentIndex < questions.length - 1 ? 'ข้อถัดไป →' : '📊 ดูผลลัพธ์' }}
+            {{ currentIndex < questions.length - 1 ? 'ຂໍ້ຖັດໄປ →' : '📊 ເບິ່ງຜົນການທົດສອບ' }}
           </button>
         </div>
       </div>
     </div>
-    <!-- ===== Result Screen ===== -->
+
+    <!-- ===== Result Screen in Lao ===== -->
     <div v-if="state === 'result'" class="text-center space-y-6">
       <!-- Score Card -->
       <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
         <div class="text-6xl mb-4">{{ scoreEmoji }}</div>
         <div class="text-4xl font-bold text-slate-800 mb-2">{{ score }}%</div>
         <div class="text-lg text-slate-600 mb-4">
-          {{ correctCount }}/{{ questions.length }} ข้อถูก
+          {{ correctCount }}/{{ questions.length }} ຂໍ້ຖືກ
         </div>
         <div class="flex justify-center gap-4 text-sm">
           <div class="text-center">
             <div class="text-2xl font-bold text-green-500">{{ correctCount }}</div>
-            <div class="text-slate-500">ถูก</div>
+            <div class="text-slate-500">ຖືກ</div>
           </div>
           <div class="w-px bg-slate-200" />
           <div class="text-center">
             <div class="text-2xl font-bold text-red-500">{{ questions.length - correctCount }}</div>
-            <div class="text-slate-500">ผิด</div>
+            <div class="text-slate-500">ຜິດ</div>
           </div>
           <div class="w-px bg-slate-200" />
           <div class="text-center">
@@ -258,6 +270,7 @@
           </div>
         </div>
       </div>
+
       <!-- XP Breakdown -->
       <div
         class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 p-5"
@@ -267,23 +280,24 @@
           <span class="font-bold text-blue-800">+{{ xpEarned }} XP</span>
         </div>
         <div class="text-sm text-blue-600 text-center">
-          {{ correctCount }} ข้อถูก × 10 XP = {{ correctCount * 10 }} XP
-          <span v-if="perfectBonus"> + {{ perfectBonus }} XP โบนัส!</span>
+          {{ correctCount }} ຂໍ້ຖືກ × 10 XP = {{ correctCount * 10 }} XP
+          <span v-if="perfectBonus"> + {{ perfectBonus }} XP ໂບນັດ!</span>
         </div>
       </div>
+
       <!-- Action Buttons -->
       <div class="flex gap-3">
         <button
           class="flex-1 py-3 rounded-xl font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
           @click="state = 'setup'"
         >
-          🔄 เล่นอีกครั้ง
+          🔄 ຫຼິ້ນອີກຄັ້ງ
         </button>
         <button
           class="flex-1 py-3 rounded-xl font-bold bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:from-blue-600 hover:to-indigo-700 transition-all"
           @click="$emit('back')"
         >
-          ← กลับ
+          ← ກັບຄືນ
         </button>
       </div>
     </div>
@@ -291,16 +305,18 @@
 </template>
 
 <script setup lang="ts">
-
 import { ref, computed, watch } from 'vue'
 import { getBalancedQuiz, getQuizByType, getQuizStats } from '@/data/sentenceQuiz'
 import { useUserStore } from '@/stores/useUserStore'
-import { speakNormal, speakSlow, stopSpeech } from '@/utils/speech'
+import { speakNormal, speakSlow } from '@/utils/speech'
 import type { SentenceQuizQuestion, SentenceQuizType } from '@/types'
+
 const emit = defineEmits<{
- back: []
+  back: []
 }>()
+
 const userStore = useUserStore()
+
 // State
 const isSpeaking = ref(false)
 const state = ref<'setup' | 'quiz' | 'result'>('setup')
@@ -312,21 +328,24 @@ const selectedAnswer = ref<string | null>(null)
 const answered = ref(false)
 const correctCount = ref(0)
 const xpEarned = ref(0)
-// Quiz type options
+
+// Quiz type options in Lao
 const stats = getQuizStats()
 const quizTypes = [
-  { type: 'balanced' as const, icon: '🎯', label: 'สมดุล (ทุกโหมด)', description: 'สุ่มจากทุกโหมด จำนวนเท่ากัน', count: Math.floor(stats.total / 4) * 4 },
-  { type: 'sentence-to-meaning' as const, icon: '🇰🇷→🇹🇭', label: 'ประโยค → ความหมาย', description: 'อ่านเกาหลี เลือกความหมายไทย', count: stats.byType['sentence-to-meaning'] },
-  { type: 'meaning-to-sentence' as const, icon: '🇹🇭→🇰🇷', label: 'ความหมาย → ประโยค', description: 'อ่านไทย เลือกประโยคเกาหลี', count: stats.byType['meaning-to-sentence'] },
-  { type: 'fill-blank' as const, icon: '📝', label: 'เติมคำในช่องว่าง', description: 'เลือกคำที่หายไปในประโยค', count: stats.byType['fill-blank'] },
-  { type: 'word-in-context' as const, icon: '🔍', label: 'คำในบริบท', description: 'คำนี้ในประโยคหมายถึงอะไร', count: stats.byType['word-in-context'] },
+  { type: 'balanced' as const, icon: '🎯', label: 'ສົມດຸນ (ທຸກໂໝດ)', description: 'ສຸ່ມຈາກທຸກໂໝດ ຈຳນວນເທົ່າກັນ', count: Math.floor(stats.total / 4) * 4 },
+  { type: 'sentence-to-meaning' as const, icon: '🇰🇷→🇱🇦', label: 'ປະໂຫຍກ → ຄວາມໝາຍ', description: 'ອ່ານເກົາຫຼີ ເລືອກຄວາມໝາຍ', count: stats.byType['sentence-to-meaning'] },
+  { type: 'meaning-to-sentence' as const, icon: '🇱🇦→🇰🇷', label: 'ຄວາມໝາຍ → ປະໂຫຍກ', description: 'ອ່ານຄວາມໝາຍ ເລືອກປະໂຫຍກເກົາຫຼີ', count: stats.byType['meaning-to-sentence'] },
+  { type: 'fill-blank' as const, icon: '📝', label: 'ຕື່ມຄຳໃນຊ່ອງວ່າງ', description: 'ເລືອກຄຳສັບທີ່ຂາດຫາຍໄປໃນປະໂຫຍກ', count: stats.byType['fill-blank'] },
+  { type: 'word-in-context' as const, icon: '🔍', label: 'ຄຳໃນບໍລິບົດ', description: 'ຄຳສັບນີ້ໃນປະໂຫຍກໝາຍເຖິງຫຍັງ', count: stats.byType['word-in-context'] },
 ]
+
 const maxQuestions = computed(() => {
   if (selectedType.value === 'balanced') {
     return Math.floor(stats.total / 4) * 4
   }
   return stats.byType[selectedType.value] || 50
 })
+
 // Current question
 const currentQuestion = computed(() => questions.value[currentIndex.value] || null)
 const isCorrect = computed(() => selectedAnswer.value === currentQuestion.value?.answer)
@@ -339,13 +358,15 @@ const scoreEmoji = computed(() => {
   if (score.value >= 40) return '😅'
   return '💪'
 })
+
 // Highlighted sentence for word-in-context
 const highlightedSentence = computed(() => {
   if (!currentQuestion.value || currentQuestion.value.type !== 'word-in-context') return ''
   const word = currentQuestion.value.highlightWord || ''
   return currentQuestion.value.koreanSentence.replace(word, `<span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-lg border border-blue-200">${word}</span>`)
 })
-// Type badge
+
+// Type badge in Lao
 const typeBadgeClass = computed(() => {
   const colors: Record<string, string> = {
     'sentence-to-meaning': 'bg-blue-100 text-blue-700',
@@ -355,15 +376,17 @@ const typeBadgeClass = computed(() => {
   }
   return colors[currentQuestion.value?.type || ''] || 'bg-slate-100 text-slate-700'
 })
+
 const typeBadgeLabel = computed(() => {
   const labels: Record<string, string> = {
-    'sentence-to-meaning': '🇰🇷→🇹🇭 ประโยค → ความหมาย',
-    'meaning-to-sentence': '🇹🇭→🇰🇷 ความหมาย → ประโยค',
-    'fill-blank': '📝 เติมคำ',
-    'word-in-context': '🔍 คำในบริบท',
+    'sentence-to-meaning': '🇰🇷→🇱🇦 ປະໂຫຍກ → ຄວາມໝາຍ',
+    'meaning-to-sentence': '🇱🇦→🇰🇷 ຄວາມໝາຍ → ປະໂຫຍກ',
+    'fill-blank': '📝 ຕື່ມຄຳ',
+    'word-in-context': '🔍 ຄຳໃນບໍລິບົດ',
   }
   return labels[currentQuestion.value?.type || ''] || ''
 })
+
 // Methods
 function startQuiz() {
   if (selectedType.value === 'balanced') {
@@ -378,7 +401,7 @@ function startQuiz() {
   answered.value = false
   state.value = 'quiz'
 }
-// ===== Speech ===== // อ่านประโยคเกาหลี
+
 async function speakSentence(text: string) {
   isSpeaking.value = true
   try {
@@ -387,13 +410,13 @@ async function speakSentence(text: string) {
     isSpeaking.value = false
   }
 }
-// อ่านคำตอบที่ถูก
+
 async function speakAnswer() {
   if (!currentQuestion.value) return
   const text = currentQuestion.value.type === 'meaning-to-sentence' ? currentQuestion.value.answer : currentQuestion.value.koreanSentence
   await speakNormal(text)
 }
-// อ่านประโยคเมื่อเปลี่ยนข้อ
+
 watch(currentQuestion, (q) => {
   if (q && state.value === 'quiz') {
     const text = q.type === 'meaning-to-sentence' ? undefined : q.koreanSentence
@@ -402,6 +425,7 @@ watch(currentQuestion, (q) => {
     }
   }
 })
+
 function selectAnswer(option: string) {
   if (answered.value) return
   selectedAnswer.value = option
@@ -409,6 +433,7 @@ function selectAnswer(option: string) {
   if (isCorrect.value) { correctCount.value++ }
   setTimeout(() => speakAnswer(), 500)
 }
+
 function nextQuestion() {
   if (currentIndex.value < questions.value.length - 1) {
     currentIndex.value++
@@ -420,12 +445,14 @@ function nextQuestion() {
     state.value = 'result'
   }
 }
+
 function getOptionClass(option: string, _index: number) {
   if (!answered.value) return 'border-slate-200 bg-white hover:border-blue-300 hover:bg-blue-50 cursor-pointer'
   if (option === currentQuestion.value?.answer) return 'border-green-400 bg-green-50'
   if (option === selectedAnswer.value && option !== currentQuestion.value?.answer) return 'border-red-400 bg-red-50'
   return 'border-slate-200 bg-slate-50 opacity-50'
 }
+
 function getLetterClass(option: string) {
   if (!answered.value) return 'bg-slate-100 text-slate-600'
   if (option === currentQuestion.value?.answer) return 'bg-green-500 text-white'

@@ -2,18 +2,19 @@
   <div class="relative" ref="dropdownRef">
     <!-- Trigger Button -->
     <button
-      class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200"
+      class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 border border-slate-200 bg-white hover:bg-pink-50 hover:border-pink-300 shadow-xs active:scale-95"
       :class="
         isOpen
-          ? 'bg-pink-100 text-pink-700'
-          : 'bg-slate-100 text-slate-600 hover:bg-slate-200 :bg-slate-600'
+          ? 'bg-pink-50 text-pink-700 border-pink-300'
+          : 'text-slate-700'
       "
       @click="isOpen = !isOpen"
+      aria-label="ເລືອກສຽງອ່ານພາສາເກົາຫຼີ"
     >
-      <span class="text-lg">👩</span>
-      <span class="hidden sm:inline">เสียงหญิง</span>
+      <span class="text-base leading-none">{{ currentModeIcon }}</span>
+      <span class="hidden sm:inline font-medium text-xs">{{ currentModeLabel }}</span>
       <svg
-        class="w-3 h-3 transition-transform duration-200"
+        class="w-3 h-3 text-slate-400 transition-transform duration-200"
         :class="{ 'rotate-180': isOpen }"
         fill="none"
         stroke="currentColor"
@@ -22,6 +23,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
     </button>
+
     <!-- Dropdown -->
     <Transition
       enter-active-class="transition-all duration-200 ease-out"
@@ -33,54 +35,76 @@
     >
       <div
         v-if="isOpen"
-        class="absolute right-0 top-full mt-2 w-56 bg-white rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/50 overflow-hidden z-50"
+        class="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/50 overflow-hidden z-50 p-2"
       >
-        <div class="p-2">
-          <div class="text-xs font-semibold text-slate-400 px-3 py-2 uppercase tracking-wide">
-            🔊 เสียงเกาหลี
-          </div>
-          <!-- Female Voice -->
-          <button
-            class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150"
-            :class="
-              isFemale
-                ? 'bg-pink-50 text-pink-700 '
-                : 'text-slate-700 hover:bg-slate-50 :bg-slate-700'
-            "
-            @click="toggleFemale(true)"
-          >
-            <span class="text-xl">👩</span>
-            <div class="text-left flex-1">
-              <div class="text-sm font-medium">เปิดเสียง</div>
-              <div class="text-xs text-slate-400">女性 — เสียงผู้หญิงเกาหลี</div>
-            </div>
-            <span v-if="isFemale" class="text-pink-500">✓</span>
-          </button>
-          <!-- Off -->
-          <button
-            class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150"
-            :class="
-              !isFemale
-                ? 'bg-slate-50 text-slate-700 '
-                : 'text-slate-700 hover:bg-slate-50 :bg-slate-700'
-            "
-            @click="toggleFemale(false)"
-          >
-            <span class="text-xl">🔇</span>
-            <div class="text-left flex-1">
-              <div class="text-sm font-medium">ปิดเสียง</div>
-              <div class="text-xs text-slate-400">ไม่อ่านออกเสียง</div>
-            </div>
-            <span v-if="!isFemale" class="text-slate-400">✓</span>
-          </button>
+        <div class="text-xs font-bold text-slate-400 px-3 py-2 uppercase tracking-wide">
+          🔊 ລະບົບສຽງອ່ານເກົາຫຼີ
         </div>
+
+        <!-- Mode 1: Native Korean Speaker Audio (Default & Recommended) -->
+        <button
+          class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 text-left"
+          :class="
+            activeMode === 'native'
+              ? 'bg-blue-50 text-blue-700 font-semibold'
+              : 'text-slate-700 hover:bg-slate-50'
+          "
+          @click="selectMode('native')"
+        >
+          <span class="text-xl">🇰🇷</span>
+          <div class="flex-1">
+            <div class="text-sm font-bold flex items-center gap-1.5">
+              <span>ສຽງຄົນເກົາຫຼີແທ້</span>
+              <span class="text-[10px] bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded-full font-bold">ແນະນຳ</span>
+            </div>
+            <div class="text-[11px] text-slate-400">ສຳນຽງທຳມະຊາດ ຊັດເຈນ</div>
+          </div>
+          <span v-if="activeMode === 'native'" class="text-blue-600 font-bold">✓</span>
+        </button>
+
+        <!-- Mode 2: Web Speech System -->
+        <button
+          class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 text-left mt-1"
+          :class="
+            activeMode === 'webspeech'
+              ? 'bg-purple-50 text-purple-700 font-semibold'
+              : 'text-slate-700 hover:bg-slate-50'
+          "
+          @click="selectMode('webspeech')"
+        >
+          <span class="text-xl">🔊</span>
+          <div class="flex-1">
+            <div class="text-sm font-bold">ສຽງລະບົບ (Web Speech)</div>
+            <div class="text-[11px] text-slate-400">ສຽງອ່ານຈາກອຸປະກອນ</div>
+          </div>
+          <span v-if="activeMode === 'webspeech'" class="text-purple-600 font-bold">✓</span>
+        </button>
+
+        <!-- Mode 3: Mute / Off -->
+        <button
+          class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 text-left mt-1"
+          :class="
+            activeMode === 'off'
+              ? 'bg-slate-100 text-slate-800 font-semibold'
+              : 'text-slate-700 hover:bg-slate-50'
+          "
+          @click="selectMode('off')"
+        >
+          <span class="text-xl">🔇</span>
+          <div class="flex-1">
+            <div class="text-sm font-bold">ປິດສຽງ</div>
+            <div class="text-[11px] text-slate-400">ບໍ່ອ່ານອອກສຽງ</div>
+          </div>
+          <span v-if="activeMode === 'off'" class="text-slate-600 font-bold">✓</span>
+        </button>
+
         <!-- Test Button -->
-        <div class="border-t border-slate-100 p-2">
+        <div class="border-t border-slate-100 mt-2 pt-2">
           <button
-            class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-50 text-slate-600 hover:bg-slate-100 :bg-slate-600 transition-colors text-sm"
+            class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-50 hover:bg-blue-50 hover:text-blue-600 text-slate-700 font-semibold transition-colors text-xs active:scale-95"
             @click="testVoice"
           >
-            <span>▶️</span> <span>ลองฟังเสียง</span>
+            <span>▶️</span> <span>ລອງຟັງສຽງຕົວຢ່າງ</span>
           </button>
         </div>
       </div>
@@ -89,43 +113,45 @@
 </template>
 
 <script setup lang="ts">
-
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { speakNormal } from '@/utils/speech'
+import { getAudioMode, setAudioMode, speakNormal, type AudioMode } from '@/utils/speech'
+
 const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
-const isFemale = ref(loadVoiceEnabled())
-const VOICE_KEY = 'korean_voice_enabled'
-function loadVoiceEnabled(): boolean {
-  try {
-    const saved = localStorage.getItem(VOICE_KEY)
-    if (saved !== null) return saved === 'true'
-  } catch { /* ignore */ }
-  return true
-}
-function saveVoiceEnabled(enabled: boolean) {
-  try { localStorage.setItem(VOICE_KEY, String(enabled)) } catch { /* ignore */ }
-}
-function toggleFemale(enabled: boolean) {
-  isFemale.value = enabled
-  saveVoiceEnabled(enabled)
+const activeMode = getAudioMode()
+
+const currentModeIcon = computed(() => {
+  if (activeMode.value === 'native') return '🇰🇷'
+  if (activeMode.value === 'webspeech') return '🔊'
+  return '🔇'
+})
+
+const currentModeLabel = computed(() => {
+  if (activeMode.value === 'native') return 'ສຽງຄົນເກົາຫຼີ'
+  if (activeMode.value === 'webspeech') return 'ສຽງລະບົບ'
+  return 'ປິດສຽງ'
+})
+
+function selectMode(mode: AudioMode) {
+  setAudioMode(mode)
   isOpen.value = false
 }
+
 function testVoice() {
-  speakNormal('안녕하세요! 한국어를 배우고 있어요.')
-  isOpen.value = false
+  speakNormal('안녕하세요! 한국어를 배워요.')
 }
+
 function handleClickOutside(e: MouseEvent) {
   if (dropdownRef.value && !dropdownRef.value.contains(e.target as Node)) {
     isOpen.value = false
   }
 }
+
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
 })
+
 onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)
 })
-// Export for other components to check
-defineExpose({ isFemale })
 </script>

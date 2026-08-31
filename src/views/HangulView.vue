@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { ref, computed, watch } from 'vue'
 import { useHangulStore } from '@/stores/useHangulStore'
 import { useUserStore } from '@/stores/useUserStore'
@@ -11,26 +10,30 @@ import HangulTrainer from '@/components/hangul/HangulTrainer.vue'
 import CombinationTable from '@/components/hangul/CombinationTable.vue'
 import { speakNormal, speakSlow } from '@/utils/speech'
 import WordCard from '@/components/vocabulary/WordCard.vue'
+
 const hangulStore = useHangulStore()
 const userStore = useUserStore()
 const activeTab = ref<'overview' | 'trainer' | 'combinations' | 'words'>('overview')
 const selectedCategory = ref<string>('all')
+
 const tabs = [
-  { key: 'overview' as const, icon: '📋', label: 'ภาพรวม' },
-  { key: 'trainer' as const, icon: '🎯', label: 'ฝึกทีละตัว' },
-  { key: 'combinations' as const, icon: '🔤', label: 'การผสม' },
-  { key: 'words' as const, icon: '📝', label: 'คำศัพท์' },
-] // แยกสถิติ
+  { key: 'overview' as const, icon: '📋', label: 'ພາບລວມ' },
+  { key: 'trainer' as const, icon: '🎯', label: 'ຝຶກເທື່ອລະຕົວ' },
+  { key: 'combinations' as const, icon: '🔤', label: 'ການປະສົມ' },
+  { key: 'words' as const, icon: '📝', label: 'ຄຳສັບ' },
+]
+
+// แยกสถิติ
 const singleConsonants = computed(() => hangulStore.consonantList.filter((c) => c.consonantSubtype === 'single'))
 const doubleConsonants = computed(() => hangulStore.consonantList.filter((c) => c.consonantSubtype === 'double'))
 const basicVowels = computed(() => hangulStore.vowelList.filter((v) => v.vowelSubtype === 'basic'))
 const compoundVowels = computed(() => hangulStore.vowelList.filter((v) => v.vowelSubtype === 'compound'))
+
 // ระดับที่เลือกดูคำศัพท์ — sync กับ store
 const viewLevel = ref<ProficiencyLevel>(userStore.progress.currentLevel)
 const allLevels: ProficiencyLevel[] = [1, 2, 3, 4, 5, 6]
 const levelDropdownOpen = ref(false)
 
-// ติดตามการเปลี่ยนระดับจาก store (เช่น navbar dropdown)
 watch(() => userStore.progress.currentLevel, (newLevel) => {
   viewLevel.value = newLevel
 })
@@ -38,17 +41,22 @@ watch(() => userStore.progress.currentLevel, (newLevel) => {
 // คำศัพท์ตาม level ที่เลือก
 const currentLevelWords = computed(() => getWordsByLevel(viewLevel.value))
 const currentLevelCategories = computed(() => getCategoriesByLevel(viewLevel.value))
+
 const filteredWords = computed(() => {
   if (selectedCategory.value === 'all') return currentLevelWords.value
   return currentLevelWords.value.filter((w) => w.category === selectedCategory.value)
 })
-function speakWord(text: string) { speakNormal(text) }
-function speakWordSlow(text: string) { speakSlow(text) }
+
 function isLearned(wordId: string) {
   return userStore.progress.learnedWords.includes(wordId)
 }
+
 function toggleLearned(wordId: string) {
-  if (isLearned(wordId)) { userStore.unlearnWord(wordId) } else { userStore.learnWord(wordId) }
+  if (isLearned(wordId)) {
+    userStore.unlearnWord(wordId)
+  } else {
+    userStore.learnWord(wordId)
+  }
 }
 </script>
 
@@ -57,12 +65,13 @@ function toggleLearned(wordId: string) {
     <!-- Page Header -->
     <div class="text-center mb-8">
       <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">
-        🇰🇷 เรียน 한글 <span class="text-slate-400 font-normal">(Hangul)</span>
+        🇰🇷 ຮຽນ 한글 <span class="text-slate-400 font-normal">(Hangul)</span>
       </h1>
       <p class="text-sm sm:text-base text-slate-500">
-        พยัญชนะ 14 ตัว + สระ 21 ตัว = ตัวอักษรเกาหลีทั้งหมด
+        ພະຍັນຊະນະ 14 ຕົວ + ສະຫຼະ 21 ຕົວ = ຕົວອັກສອນເກົາຫຼີທັງໝົດ
       </p>
     </div>
+
     <!-- Tabs -->
     <div class="flex gap-1 mb-6 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
       <button
@@ -79,6 +88,7 @@ function toggleLearned(wordId: string) {
         <span>{{ tab.icon }}</span> <span>{{ tab.label }}</span>
       </button>
     </div>
+
     <!-- Tab Content -->
     <div>
       <!-- ====== Overview Tab ====== -->
@@ -91,7 +101,7 @@ function toggleLearned(wordId: string) {
             <div class="text-2xl sm:text-3xl font-bold text-blue-500 mb-1">
               {{ singleConsonants.length }}
             </div>
-            <div class="text-xs text-slate-500 font-medium">พยัญชนะเดี่ยว</div>
+            <div class="text-xs text-slate-500 font-medium">ພະຍັນຊະນະດ່ຽວ</div>
             <div class="text-[10px] text-slate-400 mt-0.5">단자음</div>
           </div>
           <div
@@ -100,7 +110,7 @@ function toggleLearned(wordId: string) {
             <div class="text-2xl sm:text-3xl font-bold text-orange-500 mb-1">
               {{ doubleConsonants.length }}
             </div>
-            <div class="text-xs text-slate-500 font-medium">พยัญชนะคู่</div>
+            <div class="text-xs text-slate-500 font-medium">ພະຍັນຊະນະຄູ່</div>
             <div class="text-[10px] text-slate-400 mt-0.5">쌍자음</div>
           </div>
           <div
@@ -109,7 +119,7 @@ function toggleLearned(wordId: string) {
             <div class="text-2xl sm:text-3xl font-bold text-emerald-500 mb-1">
               {{ basicVowels.length }}
             </div>
-            <div class="text-xs text-slate-500 font-medium">สระพื้นฐาน</div>
+            <div class="text-xs text-slate-500 font-medium">ສະຫຼະພື້ນຖານ</div>
             <div class="text-[10px] text-slate-400 mt-0.5">기본 모음</div>
           </div>
           <div
@@ -118,30 +128,34 @@ function toggleLearned(wordId: string) {
             <div class="text-2xl sm:text-3xl font-bold text-purple-500 mb-1">
               {{ compoundVowels.length }}
             </div>
-            <div class="text-xs text-slate-500 font-medium">สระผสม</div>
+            <div class="text-xs text-slate-500 font-medium">ສະຫຼະປະສົມ</div>
             <div class="text-[10px] text-slate-400 mt-0.5">복합 모음</div>
           </div>
         </div>
+
         <!-- Grid Section -->
         <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6">
-          <h2 class="text-lg font-bold text-slate-800 mb-4">📊 ตารางตัวอักษรทั้งหมด</h2>
+          <h2 class="text-lg font-bold text-slate-800 mb-4">📊 ຕາຕະລາງຕົວອັກສອນທັງໝົດ</h2>
           <HangulGrid />
         </div>
       </div>
+
       <!-- ====== Trainer Tab ====== -->
       <div v-if="activeTab === 'trainer'">
         <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
           <HangulTrainer />
         </div>
       </div>
+
       <!-- ====== Combinations Tab ====== -->
       <div v-if="activeTab === 'combinations'">
         <div class="mb-6">
-          <h2 class="text-lg font-bold text-slate-800 mb-1">🔤 การผสมพยัญชนะ + สระ</h2>
-          <p class="text-sm text-slate-500">ตารางผสมตัวอักษรเกาหลีทั้งหมด — คลิกเพื่อฟังเสียง</p>
+          <h2 class="text-lg font-bold text-slate-800 mb-1">🔤 ການປະສົມພະຍັນຊະນະ + ສະຫຼະ</h2>
+          <p class="text-sm text-slate-500">ຕາຕະລາງປະສົມຕົວອັກສອນເກົາຫຼີທັງໝົດ — ຄລິກເພື່ອຟັງສຽງ</p>
         </div>
         <CombinationTable />
       </div>
+
       <!-- ====== Words Tab ====== -->
       <div v-if="activeTab === 'words'">
         <!-- Level Dropdown -->
@@ -181,17 +195,19 @@ function toggleLearned(wordId: string) {
             </div>
           </div>
         </div>
+
         <div class="mb-6">
           <div class="flex items-center gap-3 mb-2">
             <h2 class="text-lg font-bold text-slate-800">
-              📝 คำศัพท์ Level {{ viewLevel }}
+              📝 ຄຳສັບ Level {{ viewLevel }}
             </h2>
             <span class="px-2 py-0.5 text-xs font-semibold bg-blue-100 text-blue-600 rounded-full"
-              >{{ currentLevelWords.length }} คำ</span
+              >{{ currentLevelWords.length }} ຄຳ</span
             >
           </div>
-          <p class="text-sm text-slate-500">คลิก 🔊 เพื่อฟังเสียง • คลิก ✅ เพื่อบันทึกว่าจำได้</p>
+          <p class="text-sm text-slate-500">ຄລິກ 🔊 ເພື່ອຟັງສຽງ • ຄລິກ ✅ ເພື່ອບັນທຶກວ່າຈື່ໄດ້</p>
         </div>
+
         <div class="flex flex-wrap gap-2 mb-5">
           <button
             class="px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-200"
@@ -202,7 +218,7 @@ function toggleLearned(wordId: string) {
             "
             @click="selectedCategory = 'all'"
           >
-            ทั้งหมด ({{ currentLevelWords.length }})
+            ທັງໝົດ ({{ currentLevelWords.length }})
           </button>
           <button
             v-for="cat in currentLevelCategories"
@@ -218,6 +234,7 @@ function toggleLearned(wordId: string) {
             {{ cat }}
           </button>
         </div>
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
           <WordCard
             v-for="word in filteredWords"
@@ -227,9 +244,10 @@ function toggleLearned(wordId: string) {
             @toggle-learned="toggleLearned"
           />
         </div>
+
         <div v-if="filteredWords.length === 0" class="text-center py-12 text-slate-400">
           <div class="text-4xl mb-3">📭</div>
-          <p class="text-lg">ไม่มีคำศัพท์ในหมวดนี้</p>
+          <p class="text-lg">ບໍ່ມີຄຳສັບໃນໝວດນີ້</p>
         </div>
       </div>
     </div>
